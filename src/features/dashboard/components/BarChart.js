@@ -42,7 +42,7 @@ function BarChart(){
       };
 
     return(
-      <TitleCard title={"Revenue"}>
+      <TitleCard title={"Gas"}>
             <Bar options={options} data={data} />
       </TitleCard>
 

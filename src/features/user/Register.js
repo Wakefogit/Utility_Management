@@ -25,6 +25,7 @@ function Register(){
         if(registerObj.password.trim() === "")return setErrorMessage("Password is required! (use any value)")
         else{
             setLoading(true)
+            
             // Call API to check user credentials and save token in localstorage
             localStorage.setItem("token", "DumyTokenHere")
             setLoading(false)

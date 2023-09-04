@@ -24,12 +24,15 @@ function LeftSidebar(){
 
                 <li className="mb-2 font-semibold text-xl">
                     
-                    <Link to={'/app/welcome'}><img className="mask mask-squircle w-10" src="/logo192.png" alt="DashWind Logo"/>DashWind</Link> </li>
+                    <Link to={'/app/welcome'}><div className="text-3xl">WAKEFLO</div></Link> </li>
                 {
                     routes.map((route, k) => {
+                        
+                        
                         return(
                             <li className="" key={k}>
                                 {
+                                    
                                     route.submenu ? 
                                         <SidebarSubmenu {...route}/> : 
                                     (<NavLink
@@ -38,16 +41,30 @@ function LeftSidebar(){
                                         className={({isActive}) => `${isActive ? 'font-semibold  bg-base-200 ' : 'font-normal'}`} >
                                            {route.icon} {route.name}
                                             {
+                                               
+                                                
                                                 location.pathname === route.path ? (<span className="absolute inset-y-0 left-0 w-1 rounded-tr-md rounded-br-md bg-primary "
                                                 aria-hidden="true"></span>) : null
                                             }
+                                         {routes.map((route, key) => (
+  <div key={key}>
+    {/* ... other submenu items */}
+    
+    {/* Empty space after the "Settings" submenu item */}
+    {route.isSettings && <div className="h-4"></div>}
+  </div>
+))}
+
                                     </NavLink>)
                                 }
+                                
+
                                 
                             </li>
                         )
                     })
                 }
+               
 
             </ul>
         </div>

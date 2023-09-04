@@ -4,21 +4,27 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import { themeChange } from 'theme-change'
 import checkAuth from './app/auth';
 import initializeApp from './app/init';
+import VerifyOtp from './features/user/VerifyOtp';
+
+import ChangePassword from './features/user/ChangePassword';
 
 // Importing pages
 const Layout = lazy(() => import('./containers/Layout'))
-const Login = lazy(() => import('./pages/Login'))
-const ForgotPassword = lazy(() => import('./pages/ForgotPassword'))
-const Register = lazy(() => import('./pages/Register'))
-const Documentation = lazy(() => import('./pages/Documentation'))
 
+const Login = lazy(() => import('./pages/Login'))
+
+const ForgotPassword = lazy(() => import('./pages/ForgotPassword'))
+
+const Register = lazy(() => import('./pages/Register'))
+
+const UserCreation = lazy(() => import('./pages/User'))
 
 // Initializing different libraries
-initializeApp()
+// initializeApp()
 
 
-// Check for login and initialize axios
-const token = checkAuth()
+// // Check for login and initialize axios
+// const token = checkAuth()
 
 
 function App() {
@@ -34,14 +40,23 @@ function App() {
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
+
+
+          <Route path="/app/create-user" element={<UserCreation />} />
+
+          <Route path="/forget-password" element={<ForgotPassword />} />
+
+          <Route path="/verify-otp" element={<VerifyOtp />} />
+
+          <Route path="/changepassword" element={<ChangePassword />} />
+
           <Route path="/register" element={<Register />} />
-          <Route path="/documentation" element={<Documentation />} />
-          
+          <Route path="/layout" element={<Layout />} />
+
           {/* Place new routes over this */}
           <Route path="/app/*" element={<Layout />} />
 
-          <Route path="*" element={<Navigate to={token ? "/app/welcome" : "/login"} replace />}/>
+          <Route path="*" element={<Navigate to={"/login"} replace />} />
 
         </Routes>
       </Router>
