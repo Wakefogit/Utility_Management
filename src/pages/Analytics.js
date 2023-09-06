@@ -158,7 +158,7 @@ function ApexChart() {
 
   return (
     <div id="chart">
-      <DashboardTopBar></DashboardTopBar>
+      
       <ReactApexChart
         options={chartOptions}
         series={seriesData}

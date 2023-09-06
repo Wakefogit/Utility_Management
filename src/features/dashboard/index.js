@@ -75,6 +75,7 @@ function Dashboard() {
     <>
        {/* * ---------------------- Select Period Content ------------------------- */}
       {/* <DashboardTopBar updateDashboardPeriod={updateDashboardPeriod} />  */}
+      <DashboardTopBar></DashboardTopBar>
 
       {/* {/* * ---------------------- Different stats content 1 -------------------------} */}
       <div className="grid lg:grid-cols-4 mt-1 md:grid-cols-2 grid-cols-1 gap-6">
@@ -97,14 +98,7 @@ function Dashboard() {
         {/* <AmountStats /> */}
         {/* <PageStats /> */}
       </div>
-      </div>
-
-      {/** ---------------------- User source channels table  ------------------------- */}
-
-      <div className="grid lg:grid-cols-2 mt-4 grid-cols-1 gap-6">
-        <UserChannels />
-        {/* <DoughnutChart /> */}
-      </div>
+     
       
     </>
   );
