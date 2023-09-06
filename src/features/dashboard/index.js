@@ -73,11 +73,12 @@ function Dashboard() {
 
   return (
     <>
-      {/* * ---------------------- Select Period Content -------------------------
-      <DashboardTopBar updateDashboardPeriod={updateDashboardPeriod} /> */}
+    <div className="bg-slate-100 p-8 mt-0 rounded-md ">
+      {/* * ---------------------- Select Period Content ------------------------- */}
+      <DashboardTopBar updateDashboardPeriod={updateDashboardPeriod} /> 
 
-      {/** ---------------------- Different stats content 1 ------------------------- */}
-      <div className="grid lg:grid-cols-4 mt-2 md:grid-cols-2 grid-cols-1 gap-6">
+      {/* {/* * ---------------------- Different stats content 1 -------------------------} */}
+      <div className="grid lg:grid-cols-4 mt-1 md:grid-cols-2 grid-cols-1 gap-6">
         {statsData.map((d, k) => {
           return <DashboardStats key={k} {...d} colorIndex={k} />;
         })}
@@ -91,11 +92,12 @@ function Dashboard() {
 
       {/** ---------------------- Different stats content 2 ------------------------- */}
 
-      <div className="grid lg:grid-cols-2 mt-10 grid-cols-1 gap-6">
+      <div className="grid lg:grid-cols-2 mt-2 grid-cols-1 gap-6">
         <LineChart1 />
         <BarChart1></BarChart1>
         {/* <AmountStats /> */}
         {/* <PageStats /> */}
+      </div>
       </div>
 
       {/** ---------------------- User source channels table  ------------------------- */}
@@ -104,6 +106,7 @@ function Dashboard() {
         <UserChannels />
         {/* <DoughnutChart /> */}
       </div>
+      
     </>
   );
 }
