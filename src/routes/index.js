@@ -17,6 +17,7 @@ const ProfileSettings = lazy(() => import('../pages/protected/ProfileSettings'))
 const GettingStarted = lazy(() => import('../pages/GettingStarted'))
 const DocFeatures = lazy(() => import('../pages/DocFeatures'))
 const DocComponents = lazy(() => import('../pages/DocComponents'))
+const Analytics = lazy(() => import('../pages/Analytics'))
 
 
 const routes = [
@@ -79,6 +80,10 @@ const routes = [
   {
     path: '/blank',
     component: Blank,
+  },
+  {
+    path: '/analytics',
+    component: Analytics,
   },
 ]
 

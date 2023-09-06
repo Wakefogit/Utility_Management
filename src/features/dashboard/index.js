@@ -7,7 +7,7 @@ import UsersIcon from "@heroicons/react/24/outline/UsersIcon";
 import CircleStackIcon from "@heroicons/react/24/outline/CircleStackIcon";
 import CreditCardIcon from "@heroicons/react/24/outline/CreditCardIcon";
 import UserChannels from "./components/UserChannels";
-import LineChart from "./components/LineChart";
+import ColumnChart from "./components/ColumnChart";
 import LineChart1 from "./components/LineChart1";
 import BarChart from "./components/BarChart";
 import BarChart1 from "./components/BarChart1";
@@ -73,9 +73,8 @@ function Dashboard() {
 
   return (
     <>
-    <div className="bg-slate-100 p-8 mt-0 rounded-md ">
-      {/* * ---------------------- Select Period Content ------------------------- */}
-      <DashboardTopBar updateDashboardPeriod={updateDashboardPeriod} /> 
+       {/* * ---------------------- Select Period Content ------------------------- */}
+      {/* <DashboardTopBar updateDashboardPeriod={updateDashboardPeriod} />  */}
 
       {/* {/* * ---------------------- Different stats content 1 -------------------------} */}
       <div className="grid lg:grid-cols-4 mt-1 md:grid-cols-2 grid-cols-1 gap-6">
@@ -86,7 +85,7 @@ function Dashboard() {
 
       {/** ---------------------- Different charts ------------------------- */}
       <div className="grid lg:grid-cols-2 mt-4 grid-cols-1 gap-6">
-        <LineChart />
+        <ColumnChart />
         <BarChart />
       </div>
 
