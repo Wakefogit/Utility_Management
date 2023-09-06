@@ -37,7 +37,7 @@ function Login() {
   const [rememberMe, setRememberMe] = useState(false);
 
   const loginApi = () => {
-    setLoading(true);
+    // setLoading(true);
 
     let name = loginData?.name;
 
@@ -73,7 +73,7 @@ function Login() {
 
           setAuthToken(data.token);
 
-          setLoading(false);
+          // setLoading(false);
 
           if (rememberMe) {
             localStorage.setItem("rememberMe", "true"); // Store rememberMe in local storage
@@ -218,7 +218,7 @@ function Login() {
                 <button
                   type="submit"
                   className={
-                    "btn mt-2 w-full btn-primary" + (loading ? " loading" : "")
+                    "btn mt-2 w-full btn-primary" 
                   }
                 >
                   Login

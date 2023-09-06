@@ -9,6 +9,7 @@ import {
   Filler,
   Legend,
 } from 'chart.js';
+import ApexCharts from 'apexcharts'
 import { Line } from 'react-chartjs-2';
 import TitleCard from '../../../components/Cards/TitleCard';
 
