@@ -1,6 +1,9 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
-import DashboardTopBar from "../features/dashboard/components/DashboardTopBar";
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react'
+import DashboardTopBar from "../../features/dashboard/components/DashboardTopBar";
+import { setPageTitle } from '../../features/common/headerSlice'
 function generateData(count, yrange) {
   let i = 0;
   const series = [];
@@ -17,6 +20,11 @@ function generateData(count, yrange) {
   return series;
 }
 function ApexChart() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+      dispatch(setPageTitle({ title : "Analytics"}))
+    }, [])
   const seriesData = [
     {
       name: "Jan",

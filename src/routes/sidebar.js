@@ -117,7 +117,7 @@ const routes = [
   },
 
   {
-    path: "/analytics", // url
+    path: "/app/analytics", // url
 
   
     icon: <ChartBarIcon className={iconClasses} />, // icon component
