@@ -18,7 +18,7 @@ const ForgotPassword = lazy(() => import('./pages/ForgotPassword'))
 const Register = lazy(() => import('./pages/Register'))
 
 const UserCreation = lazy(() => import('./pages/User'))
-const Analytics = lazy(() => import('./pages/Analytics'))
+const Analytics = lazy(() => import('./pages/protected/Analytics'))
 
 // Initializing different libraries
 // initializeApp()
@@ -52,8 +52,8 @@ function App() {
 
           <Route path="/register" element={<Register />} />
           <Route path="/layout" element={<Layout />} />
-          <Route path="/analytics" element={<Analytics />} />
 
+       
           {/* Place new routes over this */}
           <Route path="/app/*" element={<Layout />} />
 
