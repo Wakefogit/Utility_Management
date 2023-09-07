@@ -29,6 +29,7 @@ import BoltIcon from "@heroicons/react/24/outline/BoltIcon";
 import ChartBarIcon from "@heroicons/react/24/outline/ChartBarIcon";
 
 import CurrencyDollarIcon from "@heroicons/react/24/outline/CurrencyDollarIcon";
+import ComputerDesktopIcon from "@heroicons/react/24/outline/ComputerDesktopIcon";
 
 import InboxArrowDownIcon from "@heroicons/react/24/outline/InboxArrowDownIcon";
 
@@ -42,7 +43,7 @@ import { SpeakerphoneIcon, VolumeOffIcon } from "@heroicons/react/outline";
 
 import Sound from "../components/Sound";
 
-const iconClasses = `h-6 w-6`;
+const iconClasses = `h-6 w-6 `;
 
 const submenuIconClasses = `h-5 w-5`;
 
@@ -53,47 +54,57 @@ const routes = [
     icon: <Squares2X2Icon className={iconClasses} />,
 
     name: "Dashboard",
+    isSettings: false,
   },
 
   {
-    path: "/", // url
+    path: "/app", // url
 
     icon: <CurrencyDollarIcon className={iconClasses} />, // icon component
 
     name: "Cost", // name that appear in Sidebar
+    isSettings: false,
   },
+  {
+    path: "/app", // url
+
+    icon: <ComputerDesktopIcon className={iconClasses} />, // icon component
+
+    name: "Zones",
+    isSettings: false, // name that appear in Sidebar
+  },
+  // {
+  //   path: "/app", // url
+  //   isSettings: false,
+  //   icon: (
+  //     <svg
+  //       xmlns="http://www.w3.org/2000/svg"
+  //       fill="none"
+  //       viewBox="0 0 24 24"
+  //       stroke-width="1.5"
+  //       stroke="currentColor"
+  //       class="w-6 h-6"
+  //     >
+  //       <path
+  //         stroke-linecap="round"
+  //         stroke-linejoin="round"
+  //         d="M6 13.5V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m12-3V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m-6-9V3.75m0 3.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 9.75V10.5"
+  //         className={iconClasses} />
+  //     </svg>
+  //   ), // icon component
+
+  //   name: "Zones", // name that appear in Sidebar
+  // },
 
   {
-    path: "/", // url
+    path: "/app", // url
     isSettings: false,
+
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="w-6 h-6"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M6 13.5V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m12-3V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m-6-9V3.75m0 3.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 9.75V10.5"
-        />
-      </svg>
-    ), // icon component
-
-    name: "Zones", // name that appear in Sidebar
-  },
-
-  {
-    path: "/", // url
-    isSettings: false,
-
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
+        
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
@@ -103,26 +114,28 @@ const routes = [
           stroke-linecap="round"
           stroke-linejoin="round"
           d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z"
-        />
+          className={iconClasses}  />
 
         <path
           stroke-linecap="round"
           stroke-linejoin="round"
           d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z"
-        />
+          className={iconClasses} />
       </svg>
     ), // icon component
 
-    name: "Reports", // name that appear in Sidebar
+    name: "Reports",
+    isSettings: false, // name that appear in Sidebar
   },
 
   {
-    path: "/analytics", // url
+    path: "/app/analytics", // url
 
   
     icon: <ChartBarIcon className={iconClasses} />, // icon component
 
-    name: "Analytics", // name that appear in Sidebar
+    name: "Analytics",
+    isSettings: false , // name that appear in Sidebar
   },
 
   // {

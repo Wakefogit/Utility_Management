@@ -3,6 +3,7 @@ import { NavLink, Routes, Link, useLocation } from 'react-router-dom'
 import SidebarSubmenu from './SidebarSubmenu';
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon'
 import { useDispatch } from 'react-redux';
+import { primary } from 'daisyui/src/colors';
 
 function LeftSidebar() {
     const location = useLocation();
@@ -24,7 +25,7 @@ function LeftSidebar() {
 
                 <li className=" font-semibold text-xl h-16 p-0 ">
 
-                    <Link to={'/app/welcome'}><div className="text-3xl">WAKEFLO</div></Link> </li>
+                    <Link to={'/'}><div className="text-3xl text-primary">WAKEFLO</div></Link> </li>
                 {
                     routes.map((route, k) => {
 
@@ -53,13 +54,13 @@ function LeftSidebar() {
                                 }
 
                                 {/* {routes.map((route, key) => (
-                                    <div key={key}> */}
+                                    <div key={key}> 
                                 {/* ... other submenu items */}
 
                                 {/* Empty space after the "Settings" submenu item */}
                                 {/* {route.isSettings && <div className="h-4"></div>}
                                     </div>
-                                ))} */}
+                                ))}  */}
 
                             </li>
                         )
