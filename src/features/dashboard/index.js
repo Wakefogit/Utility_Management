@@ -204,23 +204,23 @@ function Dashboard() {
         })}
       </div>
       </div>
-    <div className="bg-slate-200 pt-6 pl-4 mt-3 pb-8 rounded-md">
+    <div className="bg-slate-200 pt-3 pl-4 mt-3 pb-8 rounded-md">
     {/* <div className="pt-3 px-5 m"> */}
        {/* * ---------------------- Select Period Content ------------------------- */}
       {/* <DashboardTopBar updateDashboardPeriod={updateDashboardPeriod} />  */}
       {/* <DashboardTopBar></DashboardTopBar>
       </div> */}
-      <div className="bg-slate-300 rounded-full p-1 w-[345px] shadow-md backdrop-blur-lg backdrop-filter backdrop-saturate-150">
+      <div className="bg-slate-300 rounded-full  p-1 w-[259px] shadow-md backdrop-blur-lg backdrop-filter backdrop-saturate-150">
 
-<ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+<ul class="flex flex-wrap text-sm font-medium gap-0  pb-[-200px] text-center text-gray-500 dark:text-gray-400">
 
-  <li class="mr-2">
+  <li class="mr-2 p-0 ">
 
     <button
 
       onClick={() => handleDateRangeChange("today")}
 
-      className={`inline-block px-4 py-3 ${
+      className={`inline-block p-2 ${
 
         selectedDateRange === "today"
 
@@ -244,7 +244,7 @@ function Dashboard() {
 
       onClick={() => handleDateRangeChange("Week")}
 
-      className={`inline-block px-4 py-3 ${
+      className={`inline-block p-2 ${
 
         selectedDateRange === "Week"
 
@@ -268,7 +268,7 @@ Week
 
       onClick={() => handleDateRangeChange("month")}
 
-      className={`inline-block px-4 py-3 ${
+      className={`inline-block p-2 ${
 
         selectedDateRange === "month"
 
@@ -292,7 +292,7 @@ Week
 
       onClick={() => handleDateRangeChange("year")}
 
-      className={`inline-block px-6 py-3 ${
+      className={`inline-block px-[14px] py-2 ${
 
         selectedDateRange === "year"
 
@@ -317,16 +317,17 @@ Week
       
 
       {/** ---------------------- Different charts ------------------------- */}
-      <div className="grid lg:grid-cols-2 mt-3 px-6 grid-cols-1 gap-6">
+      <div className="grid lg:grid-cols-4 mt-[-10px] px-1 mr-4 gap-32">
         <ColumnChart />
         <BarChart />
+        <LineChart1 />
+        <BarChart1></BarChart1>
       </div>
 
       {/** ---------------------- Different stats content 2 ------------------------- */}
 
       <div className="grid lg:grid-cols-2 mt-3 px-6 grid-cols-1 gap-6">
-        <LineChart1 />
-        <BarChart1></BarChart1>
+        
         {/* <AmountStats /> */}
         {/* <PageStats /> */}
       </div>

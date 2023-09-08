@@ -18,7 +18,7 @@ function ColumnChart() {
 
       type: "bar",
 
-      height: 300,
+      height: 200,
 
     },
 
