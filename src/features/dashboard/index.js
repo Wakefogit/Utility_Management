@@ -1,21 +1,42 @@
 import DashboardStats from "./components/DashboardStats";
+
 import AmountStats from "./components/AmountStats";
+
 import PageStats from "./components/PageStats";
 
+import axios from "axios";
+
 import UserGroupIcon from "@heroicons/react/24/outline/UserGroupIcon";
+
 import UsersIcon from "@heroicons/react/24/outline/UsersIcon";
+
 import CircleStackIcon from "@heroicons/react/24/outline/CircleStackIcon";
+
 import CreditCardIcon from "@heroicons/react/24/outline/CreditCardIcon";
+
 import UserChannels from "./components/UserChannels";
+
 import ColumnChart from "./components/ColumnChart";
+
 import LineChart1 from "./components/LineChart1";
+
 import BarChart from "./components/BarChart";
+
 import BarChart1 from "./components/BarChart1";
+
 import DashboardTopBar from "./components/DashboardTopBar";
-import { useDispatch } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
+
 import { showNotification } from "../common/headerSlice";
+
 import DoughnutChart from "./components/DoughnutChart";
-import { useState } from "react";
+
+import {setDateRange,setResponseData} from "../common/dateRangeSlice"
+
+import { useState, useEffect } from "react";
+
+
 
 
 const statsData = [
@@ -61,31 +82,239 @@ const statsData = [
 function Dashboard() {
   const dispatch = useDispatch();
 
-  const updateDashboardPeriod = (newRange) => {
-    // Dashboard range changed, write code to refresh your values
-    dispatch(
-      showNotification({
-        message: `Period updated to ${newRange.startDate} to ${newRange.endDate}`,
-        status: 1,
-      })
-    );
+  // const updateDashboardPeriod = (newRange) => {
+  //   // Dashboard range changed, write code to refresh your values
+  //   dispatch(
+  //     showNotification({
+  //       message: `Period updated to ${newRange.startDate} to ${newRange.endDate}`,
+  //       status: 1,
+  //     })
+  //   );
+  // };
+  const {selectedDateRange} = useSelector((state) => state.dateRange);
+
+ 
+
+  const handleDateRangeChange = (newDateRange) => {
+
+    dispatch(setDateRange(newDateRange))
+
   };
+
+ 
+
+  useEffect(() => {
+
+    // Define a function to fetch data from the backend based on the selected date range
+
+    const fetchData = async () => {
+
+      try {
+
+        let startDate, endDate;
+
+        // Determine the start and end dates based on the selected date range
+
+        if (selectedDateRange === "today") {
+
+          // Get the current date for "Today"
+
+          const currentDate = new Date().toISOString().slice(0, 10);
+
+          startDate = currentDate;
+
+          endDate = currentDate;
+
+          console.log(startDate, endDate, "current date");
+
+        } else if (selectedDateRange === "month") {
+
+          // Get the current month and year for "Month"
+
+          const currentDate = new Date();
+
+          startDate = `${currentDate.getFullYear()}-${
+
+            currentDate.getMonth() + 1
+
+          }-01`;
+
+          endDate = `${currentDate.getFullYear()}-${
+
+            currentDate.getMonth() + 1
+
+          }-${currentDate.getDate()}`;
+
+        } else if (selectedDateRange === "year") {
+
+          // Get the current year for "Year"
+
+          const currentYear = new Date().getFullYear();
+
+          startDate = `${currentYear}-01-01`;
+
+          endDate = `${currentYear}-12-31`;
+
+        }
+
+ 
+
+        // Make an API call to your backend with the selected date range
+
+        const response = await axios.get(
+
+          `http://localhost:8080/energy/today?startDate=${startDate}&endDate=${endDate}`
+
+        );
+
+        console.log(response.data,"this is response from index.js")
+
+        dispatch(setResponseData(response.data));
+
+        // Handle the response data here if needed
+
+        // For example, you can set it in the component state
+
+      } catch (error) {
+
+        // Handle any errors that occur during the API call
+
+        console.error("Error fetching data:", error);
+
+      }
+
+    };
+
+ 
+
+    // Call the fetchData function when the component mounts or when the selectedDateRange changes
+
+    fetchData();
+
+  }, [selectedDateRange]);
 
   return (
     <>
-    <div className="bg-slate-200 mt-0 pb-8 rounded-md">
-    <div className="mt-[-4px] px-5 pt-8">
-       {/* * ---------------------- Select Period Content ------------------------- */}
-      {/* <DashboardTopBar updateDashboardPeriod={updateDashboardPeriod} />  */}
-      <DashboardTopBar></DashboardTopBar>
-      </div>
-
-      {/* {/* * ---------------------- Different stats content 1 -------------------------} */}
-      <div className="grid lg:grid-cols-4 mt-6 px-6 md:grid-cols-2 grid-cols-1 gap-6">
+    <div className="mt-[-30px]">
+    <div className="bg-slate-200 mt-3 p-3 rounded-md">
+    {/* {/* * ---------------------- Different stats content 1 -------------------------} */}
+    <div className="grid lg:grid-cols-4  px-2 md:grid-cols-2 grid-cols-1 gap-4">
         {statsData.map((d, k) => {
           return <DashboardStats key={k} {...d} colorIndex={k} />;
         })}
       </div>
+      </div>
+    <div className="bg-slate-200 pt-6 pl-4 mt-3 pb-8 rounded-md">
+    {/* <div className="pt-3 px-5 m"> */}
+       {/* * ---------------------- Select Period Content ------------------------- */}
+      {/* <DashboardTopBar updateDashboardPeriod={updateDashboardPeriod} />  */}
+      {/* <DashboardTopBar></DashboardTopBar>
+      </div> */}
+      <div className="bg-slate-300 rounded-full p-1 w-[345px] shadow-md backdrop-blur-lg backdrop-filter backdrop-saturate-150">
+
+<ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+
+  <li class="mr-2">
+
+    <button
+
+      onClick={() => handleDateRangeChange("today")}
+
+      className={`inline-block px-4 py-3 ${
+
+        selectedDateRange === "today"
+
+          ? "text-white rounded-full bg-blue-600"
+
+          : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
+
+      }`}
+
+    >
+
+      Today
+
+    </button>
+
+  </li>
+
+  <li class="mr-2">
+
+    <button
+
+      onClick={() => handleDateRangeChange("Week")}
+
+      className={`inline-block px-4 py-3 ${
+
+        selectedDateRange === "Week"
+
+          ? "text-white rounded-full bg-blue-600"
+
+          : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
+
+      }`}
+
+    >
+
+Week
+    </button>
+
+  </li>
+
+
+  <li class="mr-2">
+
+    <button
+
+      onClick={() => handleDateRangeChange("month")}
+
+      className={`inline-block px-4 py-3 ${
+
+        selectedDateRange === "month"
+
+          ? "text-white rounded-full bg-blue-600"
+
+          : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
+
+      }`}
+
+    >
+
+      Month
+
+    </button>
+
+  </li>
+
+  <li class="mr-2">
+
+    <button
+
+      onClick={() => handleDateRangeChange("year")}
+
+      className={`inline-block px-6 py-3 ${
+
+        selectedDateRange === "year"
+
+          ? "text-white rounded-full bg-blue-600"
+
+          : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
+
+      }`}
+
+    >
+
+      Year
+
+    </button>
+
+  </li>
+
+</ul>
+
+</div>
+
+      
 
       {/** ---------------------- Different charts ------------------------- */}
       <div className="grid lg:grid-cols-2 mt-3 px-6 grid-cols-1 gap-6">
@@ -102,7 +331,7 @@ function Dashboard() {
         {/* <PageStats /> */}
       </div>
       </div>
-      
+      </div>
     </>
   );
 }

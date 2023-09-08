@@ -3,7 +3,7 @@ import { NavLink, Routes, Link, useLocation } from 'react-router-dom'
 import SidebarSubmenu from './SidebarSubmenu';
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon'
 import { useDispatch } from 'react-redux';
-import { primary } from 'daisyui/src/colors';
+// import { primary } from 'daisyui/src/colors';
 
 function LeftSidebar() {
     const location = useLocation();
