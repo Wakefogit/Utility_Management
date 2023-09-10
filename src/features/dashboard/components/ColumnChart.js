@@ -31,7 +31,23 @@ function ColumnChart() {
       month: "short",
       day: "numeric",
     });
-  } else if (selectedDateRange === "month") {
+  } else if (selectedDateRange === "Week"){
+    const currentWeekStart = new Date(currentYear, currentMonth, currentDay - currentDate.getDay());
+
+    // Calculate the end date for the current week (Saturday)
+    const currentWeekEnd = new Date(currentWeekStart);
+    currentWeekEnd.setDate(currentWeekEnd.getDate() + 6);
+  
+    startDate = currentWeekStart.toLocaleDateString("default", {
+      month: "short",
+      day: "numeric",
+    });
+  
+    endDate = currentWeekEnd.toLocaleDateString("default", {
+      month: "short",
+      day: "numeric",
+    });
+  }else if (selectedDateRange === "month") {
     // Display the previous month
     const previousMonth = new Date(currentYear, currentMonth - 1, currentDay);
     startDate = previousMonth.toLocaleDateString("default", { month: "long" });
@@ -54,7 +70,8 @@ function ColumnChart() {
         horizontal: false,
         columnWidth: "30%",
         endingShape: "rounded",
-        colors: ["blue", "red"], // Specify the colors here
+        toolbar: null,
+        
       },
     },
 
@@ -92,6 +109,7 @@ function ColumnChart() {
         },
       },
     },
+   
   };
 
   const chartSeries = [
@@ -99,14 +117,14 @@ function ColumnChart() {
       name: "Net Profit",
 
       data: [44, 55],
-      color: "blue",
+     
     },
 
     {
       name: "Revenue",
 
       data: [76, 85],
-      color: "red",
+    
 
     },
     
@@ -114,6 +132,13 @@ function ColumnChart() {
 
   return (
     <TitleCard title={"Power"}>
+      <style>
+        {`
+          .apexcharts-menu-icon {
+            display: none !important;
+          }
+        `}
+      </style>
       <div id="chart">
         <ReactApexChart
           options={chartOptions}
