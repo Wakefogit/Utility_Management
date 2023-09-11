@@ -53,7 +53,7 @@ import {
   
       return(
         <TitleCard title={"Water"}>
-            <Line data={data} options={options}/>
+            <Line data={data} options={options} height={270}/>
         </TitleCard>
       )
   }

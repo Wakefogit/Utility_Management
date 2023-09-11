@@ -93,14 +93,14 @@ function ColumnChart() {
     chart: {
       type: "bar",
 
-      height: 150,
+      height: 180,
     },
 
     plotOptions: {
       bar: {
         horizontal: false,
 
-        columnWidth: "30%",
+        columnWidth: "60%",
 
         endingShape: "rounded",
 
@@ -117,7 +117,7 @@ function ColumnChart() {
 
       width: 2,
 
-      colors: ["transparent"],
+      colors: [" "],
     },
 
     xaxis: {
@@ -184,7 +184,7 @@ function ColumnChart() {
           options={chartOptions}
           series={chartSeries}
           type="bar"
-          height={150}
+          height={170}
         />
       </div>
     </TitleCard>

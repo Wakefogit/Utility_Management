@@ -43,7 +43,7 @@ import {
   
       return(
         <TitleCard title={"Temp"}>
-              <Bar options={options} data={data} />
+              <Bar options={options} data={data}  height={270} />
         </TitleCard>
   
       )
