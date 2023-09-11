@@ -3,6 +3,7 @@ import { NavLink, Routes, Link, useLocation } from 'react-router-dom'
 import SidebarSubmenu from './SidebarSubmenu';
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon'
 import { useDispatch } from 'react-redux';
+import AppImages from "../global/AppImages";
 // import { primary } from 'daisyui/src/colors';
 
 function LeftSidebar() {
@@ -16,16 +17,16 @@ function LeftSidebar() {
     }
 
     return (
-        <div className="drawer-side ">
-            <label htmlFor="left-sidebar-drawer" className="drawer-overlay"></label>
-            <ul className="menu  w-48 bg-base-100 text-base-content">
+        <div className="drawer-side">
+            <label htmlFor="left-sidebar-drawer" className="shadow-lg drawer-overlay"></label>
+            <ul className="menu  w-48 bg-base-100 dark:bg-gray-900 text-base-content">
                 <button className="btn btn-ghost bg-base-300  btn-circle z-50 top-0 right-0 absolute lg:hidden" onClick={() => close()}>
                     <XMarkIcon className=" inline-block " />
                 </button>
 
                 <li className=" font-semibold text-xl h-16 p-0 ">
 
-                    <Link to={'/'}><div className="text-3xl text-primary">WAKEFLO</div></Link> </li>
+                    <div className="text-3xl text-primary"><span src={AppImages.energy}></span></div> </li>
                 {
                     routes.map((route, k) => {
 
@@ -40,7 +41,7 @@ function LeftSidebar() {
                                         (<NavLink
                                             end
                                             to={route.path}
-                                            className={({ isActive }) => `${isActive ? 'font-semibold  bg-base-200 ' : 'font-normal'}`} >
+                                            className={({ isActive }) => `${isActive ? 'font-semibold  bg-grey-400 ' : 'font-normal'}`} >
                                             {route.icon} {route.name}
                                             {
 

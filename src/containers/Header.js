@@ -63,7 +63,7 @@ function Header() {
 
   return (
     <>
-      <div className="navbar p-[-1px] flex justify-between bg-base-100 z-50 h-9 mb-[-4px]">
+      <div className="navbar p-[-1px] flex justify-between bg-slate-200 dark:bg-base-100  z-50 h-9 mb-[-4px]">
         {/* Menu toogle for mobile view or small screen */}
 
         <div className="h-2">
@@ -74,7 +74,7 @@ function Header() {
             <Bars3Icon className="h-5 inline-block w-5 " />
           </label>
 
-          <h1 className="text-3xl font-semibold ml-5 p-0 text-primary">
+          <h1 className="text-2xl font-semibold ml-5 p-0 dark:text-gray">
             {pageTitle}
           </h1>
         </div>

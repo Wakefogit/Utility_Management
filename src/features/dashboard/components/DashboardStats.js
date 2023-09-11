@@ -21,7 +21,7 @@ function DashboardStats({ title, icon, value, description, colorIndex }) {
         </div>
 
         <div
-          className={`stat-value dark:text-slate-300 text-${
+          className={`stat-value dark:text-slate-300 text-gray-600 text-${
             COLORS[colorIndex % 2]
           }`}
         >
