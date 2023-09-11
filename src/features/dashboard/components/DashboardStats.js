@@ -14,13 +14,12 @@ function DashboardStats({ title, icon, value, description, colorIndex }) {
       <div className="stat">
         <div className="flex">
           <div className="stat-title dark:text-slate-300">{title}</div>
-          <div
-            className="stat-figure dark:text-slate-300 pl-3 stroke-slate-300"
-            
-          >
+
+          <div className="stat-figure dark:text-slate-300 pl-3 stroke-slate-300">
             {icon}
           </div>
         </div>
+
         <div
           className={`stat-value dark:text-slate-300 text-${
             COLORS[colorIndex % 2]
@@ -28,6 +27,7 @@ function DashboardStats({ title, icon, value, description, colorIndex }) {
         >
           {value}
         </div>
+
         <div className={"stat-desc  " + getDescStyle()}>{description}</div>
       </div>
     </div>

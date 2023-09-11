@@ -39,6 +39,7 @@ import { useState, useEffect } from "react";
 const statsData = [
   {
     title: "Power",
+
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -58,11 +59,15 @@ const statsData = [
     ),
 
     value: "34.7kWh",
+
     description: "↗︎ 2300 (22%)",
   },
+
   {
     title: "Gas",
+
     value: "$34,545",
+
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -80,11 +85,15 @@ const statsData = [
         />
       </svg>
     ),
+
     description: "Current month",
   },
+
   {
     title: "Water",
+
     value: "450",
+
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -102,11 +111,15 @@ const statsData = [
         />
       </svg>
     ),
+
     description: "50 in hot leads",
   },
+
   {
     title: "Compressed Air",
+
     value: "5.6k",
+
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -124,6 +137,7 @@ const statsData = [
         />
       </svg>
     ),
+
     description: "↙ 300 (18%)",
   },
 ];
@@ -132,14 +146,23 @@ function Dashboard() {
   const dispatch = useDispatch();
 
   // const updateDashboardPeriod = (newRange) => {
+
   //   // Dashboard range changed, write code to refresh your values
+
   //   dispatch(
+
   //     showNotification({
+
   //       message: `Period updated to ${newRange.startDate} to ${newRange.endDate}`,
+
   //       status: 1,
+
   //     })
+
   //   );
+
   // };
+
   const { selectedDateRange } = useSelector((state) => state.dateRange);
 
   const handleDateRangeChange = (newDateRange) => {
@@ -152,43 +175,65 @@ function Dashboard() {
     const fetchData = async () => {
       try {
         let startDate, endDate;
+
         // Determine the start and end dates based on the selected date range
+
         if (selectedDateRange === "today") {
           // Get the current date for "Today"
+
           const currentDate = new Date().toISOString().slice(0, 10);
+
           startDate = currentDate;
+
           endDate = currentDate;
+
           console.log(startDate, endDate, "current date");
         } else if (selectedDateRange === "month") {
           // Get the current month and year for "Month"
+
           const currentDate = new Date();
+
           startDate = `${currentDate.getFullYear()}-${
             currentDate.getMonth() + 1
           }-01`;
+
           endDate = `${currentDate.getFullYear()}-${
             currentDate.getMonth() + 1
           }-${currentDate.getDate()}`;
+
           console.log(startDate, endDate, "this is month");
         } else if (selectedDateRange === "year") {
           // Get the current year for "Year"
+
           const currentYear = new Date().getFullYear();
+
           startDate = `${currentYear}-01-01`;
+
           endDate = `${currentYear}-12-31`;
+
           console.log(startDate, endDate, "this is year");
         }
+
         // Make an API call to your backend with the selected date range
+
         const response = await axios.get(
           `http://192.168.0.104:8080/energy/today?startDate=${startDate}&endDate=${endDate}`
         );
+
         console.log(response.data, "this is response from index.js");
+
         dispatch(setResponseData(response.data));
+
         // Handle the response data here if needed
+
         // For example, you can set it in the component state
       } catch (error) {
         // Handle any errors that occur during the API call
+
         console.error("Error fetching data:", error);
       }
     };
+
     // Call the fetchData function when the component mounts or when the selectedDateRange changes
 
     fetchData();
@@ -199,79 +244,122 @@ function Dashboard() {
       <div className="mt-[-30px]">
         <div className="bg-slate-200 mt-3 p-3 rounded-md">
           {/* {/* * ---------------------- Different stats content 1 -------------------------} */}
+
           <div className="grid lg:grid-cols-4  px-2 md:grid-cols-2 grid-cols-1 gap-4">
             {statsData.map((d, k) => {
               return <DashboardStats key={k} {...d} colorIndex={k} />;
             })}
           </div>
         </div>
+
         <div className="bg-slate-200 pt-3 pl-4 mt-3 pb-8 rounded-md">
           {/* <div className="pt-3 px-5 m"> */}
+
           {/* * ---------------------- Select Period Content ------------------------- */}
+
           {/* <DashboardTopBar updateDashboardPeriod={updateDashboardPeriod} />  */}
+
           {/* <DashboardTopBar></DashboardTopBar>
+
       </div> */}
-          <div className="bg-slate-300 rounded-full  p-1 w-[259px] shadow-md backdrop-blur-lg backdrop-filter backdrop-saturate-150">
-            <ul class="flex flex-wrap text-sm font-medium gap-0  pb-[-200px] text-center text-gray-500 dark:text-gray-400">
-              <li class="mr-2 p-0 ">
-                <button
-                  onClick={() => handleDateRangeChange("today")}
-                  className={`inline-block p-2 ${
-                    selectedDateRange === "today"
-                      ? "text-white rounded-full bg-blue-600"
-                      : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
-                  }`}
-                >
-                  Today
-                </button>
-              </li>
 
-              <li class="mr-2">
-                <button
-                  onClick={() => handleDateRangeChange("Week")}
-                  className={`inline-block p-2 ${
-                    selectedDateRange === "Week"
-                      ? "text-white rounded-full bg-blue-600"
-                      : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
-                  }`}
-                >
-                  Week
-                </button>
-              </li>
+          <div className="flex flex wrap">
+            <div className="bg-slate-300 rounded-full  p-1 w-[259px] shadow-md backdrop-blur-lg backdrop-filter backdrop-saturate-150">
+              <ul class="flex flex-wrap text-sm font-medium gap-0  pb-[-200px] text-center text-gray-500 dark:text-gray-400">
+                <li class="mr-2 p-0 ">
+                  <button
+                    onClick={() => handleDateRangeChange("today")}
+                    className={`inline-block p-2 ${
+                      selectedDateRange === "today"
+                        ? "text-white rounded-full bg-blue-600"
+                        : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
+                    }`}
+                  >
+                    Today
+                  </button>
+                </li>
 
-              <li class="mr-2">
-                <button
-                  onClick={() => handleDateRangeChange("month")}
-                  className={`inline-block p-2 ${
-                    selectedDateRange === "month"
-                      ? "text-white rounded-full bg-blue-600"
-                      : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
-                  }`}
-                >
-                  Month
-                </button>
-              </li>
+                <li class="mr-2">
+                  <button
+                    onClick={() => handleDateRangeChange("Week")}
+                    className={`inline-block p-2 ${
+                      selectedDateRange === "Week"
+                        ? "text-white rounded-full bg-blue-600"
+                        : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
+                    }`}
+                  >
+                    Week
+                  </button>
+                </li>
 
-              <li class="mr-2">
-                <button
-                  onClick={() => handleDateRangeChange("year")}
-                  className={`inline-block px-[14px] py-2 ${
-                    selectedDateRange === "year"
-                      ? "text-white rounded-full bg-blue-600"
-                      : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
-                  }`}
-                >
-                  Year
-                </button>
-              </li>
-            </ul>
+                <li class="mr-2">
+                  <button
+                    onClick={() => handleDateRangeChange("month")}
+                    className={`inline-block p-2 ${
+                      selectedDateRange === "month"
+                        ? "text-white rounded-full bg-blue-600"
+                        : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
+                    }`}
+                  >
+                    Month
+                  </button>
+                </li>
+
+                <li class="mr-2">
+                  <button
+                    onClick={() => handleDateRangeChange("year")}
+                    className={`inline-block px-[14px] py-2 ${
+                      selectedDateRange === "year"
+                        ? "text-white rounded-full bg-blue-600"
+                        : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
+                    }`}
+                  >
+                    Year
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-slate-300 rounded-full p-1 w-auto shadow-md backdrop-blur-lg backdrop-filter backdrop-saturate-150 justify-end ml-auto mr-3">
+              <ul class="flex flex-wrap text-sm font-medium gap-0 pb-[-199px] text-center text-gray-500 dark:text-gray-400">
+                <li class="mr-2 p-0">
+                  <button
+                    onClick={() => handleDateRangeChange("Consumption")}
+                    className={`inline-block p-2 transition-transform transition-duration-500 ${
+                      selectedDateRange === "Consumption"
+                        ? "text-white transition-transform transition-duration-500 rounded-full bg-blue-600"
+                        : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
+                    }`}
+                  >
+                    Consumption
+                  </button>
+                </li>
+
+                <li class="mr-2">
+                  <button
+                    onClick={() => handleDateRangeChange("Cost")}
+                    className={`inline-block p-2 transition ${
+                      selectedDateRange === "Cost"
+                        ? "text-white rounded-full bg-blue-600"
+                        : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
+                    }`}
+                  >
+                    Cost
+                  </button>
+                </li>
+              </ul>
+            </div>
           </div>
 
           {/** ---------------------- Different charts ------------------------- */}
-          <div className="grid lg:grid-cols-4 mt-[-10px] px-1 mr-4 gap-32">
+
+          <div className="grid lg:grid-cols-4 mt-[-10px] px-1 mr-4 gap-5">
             <ColumnChart />
+
             <BarChart />
+
             <LineChart1 />
+
             <BarChart1></BarChart1>
           </div>
 
@@ -279,6 +367,7 @@ function Dashboard() {
 
           <div className="grid lg:grid-cols-2 mt-3 px-6 grid-cols-1 gap-6">
             {/* <AmountStats /> */}
+
             {/* <PageStats /> */}
           </div>
         </div>
