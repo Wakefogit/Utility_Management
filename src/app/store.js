@@ -9,7 +9,7 @@ import rightDrawerSlice from "../features/common/rightDrawerSlice";
 import leadsSlice from "../features/leads/leadSlice";
 
 import dateRangeSlice from "../features/common/dateRangeSlice";
-
+import MetricSlice from "../features/common/MetricSlice";
 const combinedReducer = {
   header: headerSlice,
 
@@ -20,6 +20,7 @@ const combinedReducer = {
   lead: leadsSlice,
 
   dateRange: dateRangeSlice,
+  metric: MetricSlice,
 };
 
 export default configureStore({

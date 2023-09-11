@@ -22,19 +22,18 @@ import LineChart1 from "./components/LineChart1";
 
 import BarChart from "./components/BarChart";
 
-import BarChart1 from "./components/BarChart1";
+ import BarChart1 from "./components/BarChart1";
 
 import DashboardTopBar from "./components/DashboardTopBar";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { showNotification } from "../common/headerSlice";
-
 import DoughnutChart from "./components/DoughnutChart";
 
 import { setDateRange, setResponseData } from "../common/dateRangeSlice";
-
+import { setMetric } from "../common/MetricSlice";
 import { useState, useEffect } from "react";
+import HeatMap from "./components/HeatMap";
 
 const statsData = [
   {
@@ -144,7 +143,8 @@ const statsData = [
 
 function Dashboard() {
   const dispatch = useDispatch();
-
+  const { selectedMetric } = useSelector((state) => state.metric);
+  console.log(selectedMetric,"#######$R^%&^YHFBF")
   // const updateDashboardPeriod = (newRange) => {
 
   //   // Dashboard range changed, write code to refresh your values
@@ -168,6 +168,9 @@ function Dashboard() {
   const handleDateRangeChange = (newDateRange) => {
     dispatch(setDateRange(newDateRange));
   };
+  const handleMetricChange = (newMetric) => {
+    dispatch(setMetric(newMetric)); // Dispatch action to update metric in Redux store
+  };
 
   useEffect(() => {
     // Define a function to fetch data from the backend based on the selected date range
@@ -187,7 +190,34 @@ function Dashboard() {
 
           endDate = currentDate;
 
-          console.log(startDate, endDate, "current date");
+          console.log(startDate, endDate, "this is current date");
+        } else if (selectedDateRange === "Week") {
+          const currentDate = new Date();
+          const currentDayOfWeek = currentDate.getDay(); // 0 for Sunday, 1 for Monday, etc.
+
+          // Calculate the difference between the current day of the week and Sunday (0)
+          const daysUntilSunday =
+            currentDayOfWeek === 0 ? 0 : 7 - currentDayOfWeek;
+
+          // Calculate the start date (beginning of the week)
+          const startOfCurrentWeek = new Date(
+            currentDate.getFullYear(),
+            currentDate.getMonth(),
+            currentDate.getDate() - daysUntilSunday
+          );
+
+          // Calculate the end date (end of the week)
+          const endOfCurrentWeek = new Date(
+            startOfCurrentWeek.getFullYear(),
+            startOfCurrentWeek.getMonth(),
+            startOfCurrentWeek.getDate() + 6
+          );
+
+          // Format the start and end dates
+          startDate = startOfCurrentWeek.toISOString().slice(0, 10);
+          endDate = endOfCurrentWeek.toISOString().slice(0, 10);
+
+          console.log(startDate, endDate, "this is week");
         } else if (selectedDateRange === "month") {
           // Get the current month and year for "Month"
 
@@ -268,9 +298,12 @@ function Dashboard() {
               <ul class="flex flex-wrap text-sm font-medium gap-0  pb-[-200px] text-center text-gray-500 dark:text-gray-400">
                 <li class="mr-2 p-0 ">
                   <button
-                    onClick={() => handleDateRangeChange("today")}
+                    onClick={() => {
+                      handleDateRangeChange("today");
+                      handleMetricChange("consumption");
+                    }}
                     className={`inline-block p-2 ${
-                      selectedDateRange === "today"
+                      selectedDateRange === "today" && selectedMetric === "consumption"
                         ? "text-white rounded-full bg-blue-600"
                         : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
                     }`}
@@ -281,9 +314,12 @@ function Dashboard() {
 
                 <li class="mr-2">
                   <button
-                    onClick={() => handleDateRangeChange("Week")}
+                    onClick={() => {
+                      handleDateRangeChange("Week");
+                      handleMetricChange("consumption");
+                    }}
                     className={`inline-block p-2 ${
-                      selectedDateRange === "Week"
+                      selectedDateRange === "Week" && selectedMetric === "consumption"
                         ? "text-white rounded-full bg-blue-600"
                         : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
                     }`}
@@ -294,9 +330,12 @@ function Dashboard() {
 
                 <li class="mr-2">
                   <button
-                    onClick={() => handleDateRangeChange("month")}
+                    onClick={() => {
+                      handleDateRangeChange("month");
+                      handleMetricChange("consumption"); // Update metric in Redux store
+                    }}
                     className={`inline-block p-2 ${
-                      selectedDateRange === "month"
+                      selectedDateRange === "month" && selectedMetric === "consumption"
                         ? "text-white rounded-full bg-blue-600"
                         : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
                     }`}
@@ -307,9 +346,12 @@ function Dashboard() {
 
                 <li class="mr-2">
                   <button
-                    onClick={() => handleDateRangeChange("year")}
+                    onClick={() => {
+                      handleDateRangeChange("year");
+                      handleMetricChange("consumption"); // Update metric in Redux store
+                    }}
                     className={`inline-block px-[14px] py-2 ${
-                      selectedDateRange === "year"
+                      selectedDateRange === "year" && selectedMetric === "consumption"
                         ? "text-white rounded-full bg-blue-600"
                         : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
                     }`}
@@ -324,9 +366,12 @@ function Dashboard() {
               <ul class="flex flex-wrap text-sm font-medium gap-0 pb-[-199px] text-center text-gray-500 dark:text-gray-400">
                 <li class="mr-2 p-0">
                   <button
-                    onClick={() => handleDateRangeChange("Consumption")}
+                    onClick={() => {
+                      handleDateRangeChange(selectedDateRange);
+                      handleMetricChange("consumption"); // Update metric in Redux store
+                    }}
                     className={`inline-block p-2 transition-transform transition-duration-500 ${
-                      selectedDateRange === "Consumption"
+                      selectedMetric === "consumption"
                         ? "text-white transition-transform transition-duration-500 rounded-full bg-blue-600"
                         : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
                     }`}
@@ -337,9 +382,12 @@ function Dashboard() {
 
                 <li class="mr-2">
                   <button
-                    onClick={() => handleDateRangeChange("Cost")}
+                    onClick={() => {
+                      handleDateRangeChange(selectedDateRange);
+                      handleMetricChange("Cost"); // Update metric in Redux store
+                    }}
                     className={`inline-block p-2 transition ${
-                      selectedDateRange === "Cost"
+                      selectedMetric === "Cost"
                         ? "text-white rounded-full bg-blue-600"
                         : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
                     }`}
@@ -366,6 +414,7 @@ function Dashboard() {
           {/** ---------------------- Different stats content 2 ------------------------- */}
 
           <div className="grid lg:grid-cols-2 mt-3 px-6 grid-cols-1 gap-6">
+            <HeatMap></HeatMap>
             {/* <AmountStats /> */}
 
             {/* <PageStats /> */}

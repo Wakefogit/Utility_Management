@@ -4,6 +4,7 @@ export const dateRangeSlice = createSlice({
   name: "dateRange",
   initialState: {
     selectedDateRange: "today",
+    selectField:"consumption",
     responseData: null,
   },
 

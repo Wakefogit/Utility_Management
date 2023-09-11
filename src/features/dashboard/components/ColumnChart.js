@@ -13,7 +13,7 @@ function ColumnChart() {
 
   console.log(responseData, "this is response data frim column chart");
 
-  console.log(selectedDateRange, "this is date range");
+  // console.log(selectedDateRange, "this is date range");
 
   let startDate, endDate;
 
