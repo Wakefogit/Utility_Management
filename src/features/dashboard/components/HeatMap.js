@@ -6,10 +6,9 @@ import { useEffect } from 'react'
 
 function generateData(count, yrange) {
   let i = 0;
-  const y = 24;
   const series = [];
   const startTime = "00:00";
-  const endTime = "23:00"; // End time set to 11:00 PM
+  const endTime = "23:00"; // End time set to 23:00 (11:00 PM)
   const intervalInMinutes = 60; // 1 hour in minutes
   
   while (i < count) {
@@ -29,12 +28,16 @@ function generateData(count, yrange) {
       const formattedTime = newTime.toLocaleTimeString('en-US', {
         hour: '2-digit',
         minute: '2-digit',
+        hour12: false, // Force 24-hour format
       });
+  
+      // Replace "24:00" with "00:00"
+      const adjustedTime = formattedTime.replace('24:00', '00:00');
   
       const y =
         Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
       series.push({
-        x: formattedTime,
+        x: adjustedTime,
         y: y,
       });
     }
@@ -42,9 +45,7 @@ function generateData(count, yrange) {
     i++;
   }
   
-
-
-
+  
   
   return series;
 }
@@ -53,56 +54,56 @@ function ApexChart() {
   const seriesData = [
     {
         name: 'Mo 02/09',
-        data: generateData(18, {
+        data: generateData(24, {
           min: 0,
           max: 80,
         }),
       },
       {
         name: 'Tu 03/09',
-        data: generateData(18, {
+        data: generateData(24, {
           min: 0,
           max: 80,
         }),
       },
       {
         name: 'We 04/09',
-        data: generateData(18, {
+        data: generateData(24, {
           min: 0,
           max: 80,
         }),
       },
       {
         name: 'Th 05/09',
-        data: generateData(18, {
+        data: generateData(24, {
           min: 0,
           max: 80,
         }),
       },
       {
         name: 'Fr 06/09',
-        data: generateData(18, {
+        data: generateData(24, {
           min: 0,
           max: 80,
         }),
       },
       {
         name: 'Sa 07/09',
-        data: generateData(18, {
+        data: generateData(24, {
           min: 0,
           max: 80,
         }),
       },
       {
         name: 'Su 08/09',
-        data: generateData(18, {
+        data: generateData(24, {
           min: 0,
           max: 80,
         }),
       },
       {
         name: 'Mo 09/09',
-        data: generateData(18, {
+        data: generateData(24, {
           min: 0,
           max: 80,
         }),
