@@ -97,7 +97,13 @@ function ApexChart() {
             {
               from: 0,
               to: 90,
-              name: 'Basic Color',
+              name: 'zone 1',
+              color: '#008FFB', // Replace this with your desired color
+            },
+            {
+              from: 0,
+              to: 90,
+              name: 'zone 2',
               color: '#008FFB', // Replace this with your desired color
             },
           ],
