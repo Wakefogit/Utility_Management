@@ -22,7 +22,7 @@ import LineChart1 from "./components/LineChart1";
 
 import BarChart from "./components/BarChart";
 
- import BarChart1 from "./components/BarChart1";
+import BarChart1 from "./components/BarChart1";
 
 import DashboardTopBar from "./components/DashboardTopBar";
 
@@ -30,7 +30,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import DoughnutChart from "./components/DoughnutChart";
 
-import { setDateRange, setResponseData } from "../common/dateRangeSlice";
+import {
+  setDateRange,
+  setResponseDataZone1,
+  setResponseDataZone2,
+} from "../common/dateRangeSlice";
 import { setMetric } from "../common/MetricSlice";
 import { useState, useEffect } from "react";
 import HeatMap from "./components/HeatMap";
@@ -41,13 +45,7 @@ const statsData = [
   {
     title: "Power",
 
-    icon: (
-      <img
-      src={AppImages.energy}
-      alt="Icon"
-      className="w-5 h-5"
-    />
-    ),
+    icon: <img src={AppImages.energy} alt="Icon" className="w-5 h-5" />,
 
     value: "34.7kWh",
 
@@ -59,13 +57,7 @@ const statsData = [
 
     value: "34,545",
 
-    icon: (
-      <img
-      src={AppImages.gas}
-      alt="Icon"
-      className="w-4 h-4 mb-1"
-    />
-    ),
+    icon: <img src={AppImages.gas} alt="Icon" className="w-4 h-4 mb-1" />,
 
     description: "",
   },
@@ -75,13 +67,7 @@ const statsData = [
 
     value: "415m²/h",
 
-    icon: (
-      <img
-     src={AppImages.water}
-      alt="Icon"
-      className="w-5 h-5 mb-2"
-    />
-    ),
+    icon: <img src={AppImages.water} alt="Icon" className="w-5 h-5 mb-2" />,
 
     description: "",
   },
@@ -91,13 +77,7 @@ const statsData = [
 
     value: "5.6Nm²/h",
 
-    icon: (
-      <img
-    src={AppImages.air}
-    alt="Icon"
-    className="w-5 h-5"
-  />
-    ),
+    icon: <img src={AppImages.air} alt="Icon" className="w-5 h-5" />,
 
     description: "",
   },
@@ -106,25 +86,7 @@ const statsData = [
 function Dashboard() {
   const dispatch = useDispatch();
   const { selectedMetric } = useSelector((state) => state.metric);
-  console.log(selectedMetric,"#######$R^%&^YHFBF")
-  // const updateDashboardPeriod = (newRange) => {
-
-  //   // Dashboard range changed, write code to refresh your values
-
-  //   dispatch(
-
-  //     showNotification({
-
-  //       message: `Period updated to ${newRange.startDate} to ${newRange.endDate}`,
-
-  //       status: 1,
-
-  //     })
-
-  //   );
-
-  // };
-
+  console.log(selectedMetric, "#######$R^%&^YHFBF");
   const { selectedDateRange } = useSelector((state) => state.dateRange);
 
   const handleDateRangeChange = (newDateRange) => {
@@ -132,11 +94,10 @@ function Dashboard() {
   };
   const handleMetricChange = (newMetric) => {
     dispatch(setMetric(newMetric)); // Dispatch action to update metric in Redux store
+    handleDateRangeChange("today");
   };
 
   useEffect(() => {
-    // Define a function to fetch data from the backend based on the selected date range
-
     const fetchData = async () => {
       try {
         let startDate, endDate;
@@ -153,7 +114,7 @@ function Dashboard() {
           endDate = currentDate;
 
           console.log(startDate, endDate, "this is current date");
-        } else if (selectedDateRange === "Week") {
+        } else if (selectedDateRange === "week") {
           const currentDate = new Date();
           const currentDayOfWeek = currentDate.getDay(); // 0 for Sunday, 1 for Monday, etc.
 
@@ -208,14 +169,18 @@ function Dashboard() {
 
         // Make an API call to your backend with the selected date range
 
-        const response = await axios.get(
-          `http://192.168.0.104:8080/energy/today?startDate=${startDate}&endDate=${endDate}`
+        const zone1response = await axios.get(
+          `http://192.168.0.104:8080/energy/zone1?startDate=${startDate}&endDate=${endDate}`
+        );
+        const zone2response = await axios.get(
+          `http://192.168.0.104:8080/energy/zone2?startDate=${startDate}&endDate=${endDate}`
         );
 
-        console.log(response.data, "this is response from index.js");
+        console.log(zone1response.data, "Zone1data");
+        console.log(zone2response.data);
 
-        dispatch(setResponseData(response.data));
-
+        dispatch(setResponseDataZone1(zone1response.data.totalSum));
+        dispatch(setResponseDataZone2(zone2response.data.totalSum));
         // Handle the response data here if needed
 
         // For example, you can set it in the component state
@@ -262,10 +227,10 @@ function Dashboard() {
                   <button
                     onClick={() => {
                       handleDateRangeChange("today");
-                      handleMetricChange("consumption");
                     }}
                     className={`inline-block p-2 ${
-                      selectedDateRange === "today" && selectedMetric === "consumption"
+                      selectedDateRange === "today" &&
+                      selectedMetric === "consumption"
                         ? "text-white rounded-full bg-blue-600"
                         : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
                     }`}
@@ -277,11 +242,11 @@ function Dashboard() {
                 <li class="mr-2">
                   <button
                     onClick={() => {
-                      handleDateRangeChange("Week");
-                      handleMetricChange("consumption");
+                      handleDateRangeChange("week");
                     }}
                     className={`inline-block p-2 ${
-                      selectedDateRange === "Week" && selectedMetric === "consumption"
+                      selectedDateRange === "week" &&
+                      selectedMetric === "consumption"
                         ? "text-white rounded-full bg-blue-600"
                         : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
                     }`}
@@ -294,10 +259,10 @@ function Dashboard() {
                   <button
                     onClick={() => {
                       handleDateRangeChange("month");
-                      handleMetricChange("consumption"); // Update metric in Redux store
                     }}
                     className={`inline-block p-2 ${
-                      selectedDateRange === "month" && selectedMetric === "consumption"
+                      selectedDateRange === "month" &&
+                      selectedMetric === "consumption"
                         ? "text-white rounded-full bg-blue-600"
                         : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
                     }`}
@@ -310,10 +275,10 @@ function Dashboard() {
                   <button
                     onClick={() => {
                       handleDateRangeChange("year");
-                      handleMetricChange("consumption"); // Update metric in Redux store
                     }}
                     className={`inline-block px-[14px] py-2 ${
-                      selectedDateRange === "year" && selectedMetric === "consumption"
+                      selectedDateRange === "year" &&
+                      selectedMetric === "consumption"
                         ? "text-white rounded-full bg-blue-600"
                         : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
                     }`}

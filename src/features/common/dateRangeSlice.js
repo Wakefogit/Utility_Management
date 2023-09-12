@@ -5,7 +5,8 @@ export const dateRangeSlice = createSlice({
   initialState: {
     selectedDateRange: "today",
     selectField:"consumption",
-    responseData: null,
+    responseDataZone1: null,
+    responseDataZone2: null,
   },
 
   reducers: {
@@ -13,12 +14,15 @@ export const dateRangeSlice = createSlice({
       state.selectedDateRange = action.payload;
     },
 
-    setResponseData: (state, action) => {
-      state.responseData = action.payload;
+    setResponseDataZone1: (state, action) => {
+      state.responseDataZone1 = action.payload;
+    },
+    setResponseDataZone2: (state, action) => {
+      state.responseDataZone2 = action.payload;
     },
   },
 });
 
-export const { setDateRange, setResponseData } = dateRangeSlice.actions;
+export const { setDateRange, setResponseDataZone1,setResponseDataZone2 } = dateRangeSlice.actions;
 
 export default dateRangeSlice.reducer;

@@ -7,13 +7,19 @@ import TitleCard from "../../../components/Cards/TitleCard";
 import { useSelector } from "react-redux";
 
 function ColumnChart() {
-  const { responseData } = useSelector((state) => state.dateRange);
+  const { responseDataZone1, responseDataZone2 } = useSelector(
+    (state) => state.dateRange
+  );
 
   const { selectedDateRange } = useSelector((state) => state.dateRange);
 
-  console.log(responseData, "this is response data frim column chart");
+  // console.log(responseData, "this is response data for today");
+  // console.log(responseData, "this is response data for week");
+  // console.log(responseData, "this is response data for Month");
 
-  // console.log(selectedDateRange, "this is date range");
+  console.log(responseDataZone1, "this is zone 1");
+  console.log(responseDataZone2, "this is zone 2");
+  console.log(selectedDateRange, "this is date range");
 
   let startDate, endDate;
 
@@ -92,52 +98,40 @@ function ColumnChart() {
   const chartOptions = {
     chart: {
       type: "bar",
-
       height: 180,
     },
-
     plotOptions: {
       bar: {
         horizontal: false,
-
         columnWidth: "60%",
-
         endingShape: "rounded",
-
         toolbar: null,
       },
     },
-
     dataLabels: {
       enabled: false,
     },
-
     stroke: {
       show: true,
-
       width: 2,
-
       colors: [" "],
     },
-
     xaxis: {
-      categories: [startDate, endDate],
+      categories: ["Zone 1", "Zone 2"],
     },
-
     yaxis: {
       // title: {
       //   text: "$ (thousands)",
       // },
     },
-
     fill: {
       opacity: 1,
     },
-
     tooltip: {
+      enabled: true, // Enable tooltip
       y: {
-        formatter: function () {
-          return "Value";
+        formatter: function (val) {
+          return `${val}`; // You can customize the formatting here
         },
       },
     },
@@ -145,15 +139,12 @@ function ColumnChart() {
 
   const chartSeries = [
     {
-      name: "Net Profit",
-
-      data: [44, 55],
+      name: startDate,
+      data: [responseDataZone1, responseDataZone2],
     },
-
     {
-      name: "Revenue",
-
-      data: [76, 85],
+      name: endDate,
+      data: [70000,80000],
     },
   ];
 
@@ -161,17 +152,8 @@ function ColumnChart() {
     <TitleCard title={"Power"}>
       <style>
         {`
-
- 
-
           .apexcharts-menu-icon {
-
- 
-
             display: none !important;
-
- 
-
           }
 
  
