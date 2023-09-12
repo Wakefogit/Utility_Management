@@ -6,105 +6,148 @@ import { useEffect } from 'react'
 
 function generateData(count, yrange) {
   let i = 0;
+  const y = 24;
   const series = [];
+  const startTime = "00:00";
+  const endTime = "23:00"; // End time set to 11:00 PM
+  const intervalInMinutes = 60; // 1 hour in minutes
+  
   while (i < count) {
-    const x = "w" + (i + 1).toString();
-    const y =
-      Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
-    series.push({
-      x: x,
-      y: y,
-    });
+    const timePartsStart = startTime.split(":");
+    const hoursStart = parseInt(timePartsStart[0], 10);
+    const minutesStart = parseInt(timePartsStart[1], 10);
+  
+    const timePartsEnd = endTime.split(":");
+    const hoursEnd = parseInt(timePartsEnd[0], 10);
+    const minutesEnd = parseInt(timePartsEnd[1], 10);
+  
+    const newTime = new Date();
+    newTime.setHours(hoursStart);
+    newTime.setMinutes(minutesStart + i * intervalInMinutes);
+  
+    if (newTime.getHours() <= hoursEnd) {
+      const formattedTime = newTime.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+      });
+  
+      const y =
+        Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
+      series.push({
+        x: formattedTime,
+        y: y,
+      });
+    }
+    
     i++;
   }
+  
+
+
+
+  
   return series;
 }
 function ApexChart() {
 
   const seriesData = [
     {
-        name: 'Metric1',
+        name: 'Mo 02/09',
         data: generateData(18, {
           min: 0,
-          max: 90,
+          max: 80,
         }),
       },
       {
-        name: 'Metric2',
+        name: 'Tu 03/09',
         data: generateData(18, {
           min: 0,
-          max: 90,
+          max: 80,
         }),
       },
       {
-        name: 'Metric3',
+        name: 'We 04/09',
         data: generateData(18, {
           min: 0,
-          max: 90,
+          max: 80,
         }),
       },
       {
-        name: 'Metric4',
+        name: 'Th 05/09',
         data: generateData(18, {
           min: 0,
-          max: 90,
+          max: 80,
         }),
       },
       {
-        name: 'Metric5',
+        name: 'Fr 06/09',
         data: generateData(18, {
           min: 0,
-          max: 90,
+          max: 80,
         }),
       },
       {
-        name: 'Metric6',
+        name: 'Sa 07/09',
         data: generateData(18, {
           min: 0,
-          max: 90,
+          max: 80,
         }),
       },
       {
-        name: 'Metric7',
+        name: 'Su 08/09',
         data: generateData(18, {
           min: 0,
-          max: 90,
+          max: 80,
         }),
       },
       {
-        name: 'Metric8',
+        name: 'Mo 09/09',
         data: generateData(18, {
           min: 0,
-          max: 90,
+          max: 80,
         }),
       },
-      {
-        name: 'Metric9',
-        data: generateData(18, {
-          min: 0,
-          max: 90,
-        }),
-      },
+      
+      
    
   ];
 
   const chartOptions = {
     plotOptions: {
       heatmap: {
-        shadeIntensity: 0.5, // Adjust the intensity of the color
+        // shadeIntensity: 0.5, // Adjust the intensity of the color
         colorScale: {
           ranges: [
             {
               from: 0,
-              to: 90,
-              name: 'zone 1',
-              color: '#008FFB', // Replace this with your desired color
+              to: 20,
+              name: '0Wh',
+              color: '#EEE3CF', // Replace this with your desired color
             },
             {
-              from: 0,
-              to: 90,
-              name: 'zone 2',
-              color: '#008FFB', // Replace this with your desired color
+              from: 21,
+              to: 30,
+              name: '100Wh',
+              color: '#DEBB85', // Replace this with your desired color
+            },
+            
+            {
+              from: 31,
+              to: 50,
+              name: '200Wh',
+              color: '#D2995B', // Replace this with your desired color
+            },
+            {
+              from: 51,
+              to: 70,
+              name: '300Wh',
+              color: '#BD7A32', // Replace this with your desired color
+            },
+            {
+              from: 71,
+              to: 80,
+              name: '100Wh',
+              color: '#964E15', // Replace this with your desired color
             },
           ],
         },
