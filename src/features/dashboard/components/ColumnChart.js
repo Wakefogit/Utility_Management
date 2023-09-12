@@ -13,9 +13,6 @@ function ColumnChart() {
 
   const { selectedDateRange } = useSelector((state) => state.dateRange);
 
-  // console.log(responseData, "this is response data for today");
-  // console.log(responseData, "this is response data for week");
-  // console.log(responseData, "this is response data for Month");
 
   console.log(responseDataZone1, "this is zone 1");
   console.log(responseDataZone2, "this is zone 2");
@@ -53,7 +50,7 @@ function ColumnChart() {
 
       day: "numeric",
     });
-  } else if (selectedDateRange === "Week") {
+  } else if (selectedDateRange === "week") {
     const currentWeekStart = new Date(
       currentYear,
       currentMonth,

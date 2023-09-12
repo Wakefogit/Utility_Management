@@ -86,7 +86,7 @@ const statsData = [
 function Dashboard() {
   const dispatch = useDispatch();
   const { selectedMetric } = useSelector((state) => state.metric);
-  console.log(selectedMetric, "#######$R^%&^YHFBF");
+ 
   const { selectedDateRange } = useSelector((state) => state.dateRange);
 
   const handleDateRangeChange = (newDateRange) => {

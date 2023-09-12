@@ -61,7 +61,7 @@ function LineChart1() {
 
       day: "numeric",
     });
-  } else if (selectedDateRange === "Week") {
+  } else if (selectedDateRange === "week") {
     const currentWeekStart = new Date(
       currentYear,
       currentMonth,
