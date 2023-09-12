@@ -337,11 +337,14 @@ function Dashboard() {
 
             <BarChart1></BarChart1>
           </div>
+        </div>
 
-          {/** ---------------------- Different stats content 2 ------------------------- */}
+        {/** ---------------------- Different stats content 2 ------------------------- */}
 
-          <div className="grid lg:grid-cols-2 mt-3 px-6 grid-cols-1 gap-6">
+        <div className=" dark:bg-gray-900 pt-3 pl-4 mt-3 pb-8 rounded-sm">
+          <div className="grid lg:grid-cols-1 mt-3 px-6 grid-cols-1 gap-6">
             <HeatMap></HeatMap>
+
             {/* <AmountStats /> */}
 
             {/* <PageStats /> */}
