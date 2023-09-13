@@ -58,7 +58,7 @@ const routes = [
   },
 
   {
-    path: "/app", // url
+    path: "/app/cost", // url
 
     icon: <CurrencyDollarIcon className={iconClasses} />, // icon component
 
@@ -66,7 +66,7 @@ const routes = [
     isSettings: false,
   },
   {
-    path: "/app", // url
+    path: "/app/zone", // url
 
     icon: <ComputerDesktopIcon className={iconClasses} />, // icon component
 

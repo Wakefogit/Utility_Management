@@ -45,7 +45,7 @@ function generateData(count, yrange) {
     i++;
   }
 
-  return series;
+  return series
 }
 function ApexChart() {
   useEffect(() => {
@@ -172,14 +172,14 @@ function ApexChart() {
         height={350}
       />
     </div>
-  );
+  )
 }
 // const options = ["Power", "Gas", "Water", "Compressed Air"];
 // const defaultOption = "Power";
 const HeatMap = () => {
   return (
     <div>   
-      <ApexChart />;
+      <ApexChart />
     </div>
   );
 };

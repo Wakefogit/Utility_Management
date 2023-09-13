@@ -199,17 +199,17 @@ function Dashboard() {
   return (
     <>
       <div className="mt-[-30px]">
-        <div className=" dark:bg-gray-900  mt-3 p-2 rounded-sm">
+        <div className=" dark:bg-gray-900 mt-3 p-2 rounded-sm">
           {/* {/* * ---------------------- Different stats content 1 -------------------------} */}
 
-          <div className="grid lg:grid-cols-4  px-2 md:grid-cols-2 grid-cols-1 gap-4">
+          <div className="grid lg:grid-cols-4 px-2 md:grid-cols-2 grid-cols-1 gap-4">
             {statsData.map((d, k) => {
               return <DashboardStats key={k} {...d} colorIndex={k} />;
             })}
           </div>
         </div>
 
-        <div className="bg-slate-200 dark:bg-gray-900 pt-3 pl-4 mt-3 pb-8 rounded-sm ">
+        <div className="bg-slate-200 dark:bg-gray-900 pt-3 pl-4 mt-3 pb-8 rounded-md shadow-lg ">
           {/* <div className="pt-3 px-5 m"> */}
 
           {/* * ---------------------- Select Period Content ------------------------- */}
@@ -221,7 +221,7 @@ function Dashboard() {
       </div> */}
 
           <div className=" flex wrap">
-            <div className=" bg-slate-200 dark:bg-gray-800  rounded-full  p-1 w-[259px] shadow-md backdrop-blur-lg backdrop-filter backdrop-saturate-150">
+            <div className=" bg-base-100 dark:bg-gray-800  rounded-full  p-1 w-[259px] shadow-md backdrop-blur-lg backdrop-filter backdrop-saturate-150">
               <ul class="flex flex-wrap text-sm font-medium gap-0  pb-[-200px] text-center text-gray-500 dark:text-gray-400">
                 <li class="mr-2 p-0 ">
                   <button
@@ -231,7 +231,7 @@ function Dashboard() {
                     className={`inline-block p-2 ${
                       selectedDateRange === "today" &&
                       selectedMetric === "consumption"
-                        ? "text-white rounded-full bg-blue-600"
+                        ? "text-white rounded-full bg-blue-900"
                         : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
                     }`}
                   >
@@ -247,7 +247,7 @@ function Dashboard() {
                     className={`inline-block p-2 ${
                       selectedDateRange === "week" &&
                       selectedMetric === "consumption"
-                        ? "text-white rounded-full bg-blue-600"
+                        ? "text-white rounded-full bg-blue-900"
                         : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
                     }`}
                   >
@@ -263,7 +263,7 @@ function Dashboard() {
                     className={`inline-block p-2 ${
                       selectedDateRange === "month" &&
                       selectedMetric === "consumption"
-                        ? "text-white rounded-full bg-blue-600"
+                        ? "text-white rounded-full bg-blue-900"
                         : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
                     }`}
                   >
@@ -279,7 +279,7 @@ function Dashboard() {
                     className={`inline-block px-[14px] py-2 ${
                       selectedDateRange === "year" &&
                       selectedMetric === "consumption"
-                        ? "text-white rounded-full bg-blue-600"
+                        ? "text-white rounded-full bg-blue-900"
                         : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
                     }`}
                   >
@@ -289,7 +289,7 @@ function Dashboard() {
               </ul>
             </div>
 
-            <div className=" bg-slate-200 dark:bg-gray-800 rounded-full p-1 w-auto shadow-md backdrop-blur-lg backdrop-filter backdrop-saturate-150 justify-end ml-auto mr-3">
+            <div className=" bg-base-100 dark:bg-gray-800 rounded-full p-1 w-auto shadow-md backdrop-blur-lg backdrop-filter backdrop-saturate-150 justify-end ml-auto mr-3">
               <ul class="flex flex-wrap text-sm font-medium gap-0 pb-[-199px] text-center text-gray-500 dark:text-gray-400">
                 <li class="mr-2 p-0">
                   <button
@@ -299,7 +299,7 @@ function Dashboard() {
                     }}
                     className={`inline-block p-2 transition-transform transition-duration-500 ${
                       selectedMetric === "consumption"
-                        ? "text-white transition-transform transition-duration-500 rounded-full bg-blue-600"
+                        ? "text-white transition-transform transition-duration-500 rounded-full bg-blue-900"
                         : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
                     }`}
                   >
@@ -315,7 +315,7 @@ function Dashboard() {
                     }}
                     className={`inline-block p-2 transition ${
                       selectedMetric === "Cost"
-                        ? "text-white rounded-full bg-blue-600"
+                        ? "text-white rounded-full bg-blue-900"
                         : "rounded-3xl hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
                     }`}
                   >
@@ -328,7 +328,7 @@ function Dashboard() {
 
           {/** ---------------------- Different charts ------------------------- */}
 
-          <div className="grid lg:grid-cols-4 mt-[-10px] px-1 mr-4 gap-5 ">
+          <div className="grid lg:grid-cols-4 mt-[-10px] px-1 mr-4 gap-2 ">
             <ColumnChart />
 
             <BarChart />
@@ -341,8 +341,9 @@ function Dashboard() {
 
         {/** ---------------------- Different stats content 2 ------------------------- */}
 
-        <div className=" dark:bg-gray-900 pt-3 pl-4 mt-3 pb-8 rounded-sm">
+        <div className=" dark:bg-gray-900 bg-base-300 pt-3 pl-4 mt-3 pb-3 rounded-sm shadow-lg">
           <div className="grid lg:grid-cols-1 mt-3 px-6 grid-cols-1 gap-6">
+          
             <Select
               style={{ width: 200 }}
               placeholder="Select"
@@ -366,7 +367,7 @@ function Dashboard() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
 export default Dashboard;
