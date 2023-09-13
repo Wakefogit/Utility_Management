@@ -3,8 +3,7 @@ import ReactApexChart from "react-apexcharts";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
-import { Select } from "antd";
-const { Option } = Select;
+
 function generateData(count, yrange) {
   let i = 0;
   const series = [];
@@ -175,21 +174,11 @@ function ApexChart() {
     </div>
   );
 }
-const options = ["Power", "Gas", "Water", "Compressed Air"];
-const defaultOption = "Power"
+// const options = ["Power", "Gas", "Water", "Compressed Air"];
+// const defaultOption = "Power";
 const HeatMap = () => {
   return (
-    <div>
-   <Select
-  style={{ width: 200 }}
-  placeholder="Select"
-  defaultValue={defaultOption} // Set the default option here
- 
->
-        {options.map((option) => (
-          <Option key={option}>{option}</Option>
-        ))}
-      </Select>
+    <div>   
       <ApexChart />;
     </div>
   );

@@ -40,7 +40,8 @@ import { useState, useEffect } from "react";
 import HeatMap from "./components/HeatMap";
 
 import AppImages from "../../global/AppImages";
-
+import { Select } from "antd";
+const { Option } = Select;
 const statsData = [
   {
     title: "Power",
@@ -82,11 +83,13 @@ const statsData = [
     description: "",
   },
 ];
-
+const options = ["Power", "Gas", "Water", "Compressed Air"];
+const defaultOption = "Power";
 function Dashboard() {
+  const [selectedOption, setSelectedOption] = useState("Power");
   const dispatch = useDispatch();
   const { selectedMetric } = useSelector((state) => state.metric);
- 
+
   const { selectedDateRange } = useSelector((state) => state.dateRange);
 
   const handleDateRangeChange = (newDateRange) => {
@@ -180,9 +183,7 @@ function Dashboard() {
 
         dispatch(setResponseDataZone1(zone1response.data.totalSum));
         dispatch(setResponseDataZone2(zone2response.data.totalSum));
-     
       } catch (error) {
-        
         console.error("Error fetching data:", error);
       }
     };
@@ -339,8 +340,21 @@ function Dashboard() {
 
         <div className=" dark:bg-gray-900 pt-3 pl-4 mt-3 pb-8 rounded-sm">
           <div className="grid lg:grid-cols-1 mt-3 px-6 grid-cols-1 gap-6">
-         
-            <HeatMap></HeatMap>
+            <Select
+              style={{ width: 200 }}
+              placeholder="Select"
+              defaultValue={defaultOption}
+              value={selectedOption} // Set the selected option
+              onChange={(value) => setSelectedOption(value)}
+            >
+              {options.map((option) => (
+                <Option key={option}>{option}</Option>
+              ))}
+            </Select>
+           { selectedOption == "Power" &&<HeatMap ></HeatMap>}
+           { selectedOption == "Gas" &&<p>dummy gas</p>}
+           { selectedOption == "Water" &&<p>dummy water</p>}
+           { selectedOption == "Compressed Air" &&<p>dummy compressed air</p>}
 
             {/* <AmountStats /> */}
 
