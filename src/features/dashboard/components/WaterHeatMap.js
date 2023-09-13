@@ -114,7 +114,9 @@ function ApexChart() {
 
   // Function to format a date as "Mo 02/09" format
   function formatDateForChart(date) {
-    const dayOfWeek = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"][date.getDay()];
+    const dayOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][
+      date.getDay()
+    ];
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
     return `${dayOfWeek} ${day}/${month}`;
@@ -128,34 +130,52 @@ function ApexChart() {
           ranges: [
             {
               from: 0,
+
               to: 20,
+
               name: "0Wh",
-              color: "#EEE3CF", // Replace this with your desired color
+
+              color: " #DBDCDA", // Replace this with your desired color
             },
+
             {
               from: 21,
+
               to: 30,
+
               name: "100Wh",
-              color: "#DEBB85", // Replace this with your desired color
+
+              color: "#BABABA", // Replace this with your desired color
             },
 
             {
               from: 31,
+
               to: 50,
+
               name: "200Wh",
-              color: "#D2995B", // Replace this with your desired color
+
+              color: "#A8A7AC", // Replace this with your desired color
             },
+
             {
               from: 51,
+
               to: 70,
+
               name: "300Wh",
-              color: "#BD7A32", // Replace this with your desired color
+
+              color: "#63687A", // Replace this with your desired color
             },
+
             {
               from: 71,
+
               to: 80,
-              name: "100Wh",
-              color: "#964E15", // Replace this with your desired color
+
+              name: "400Wh",
+
+              color: "#4D535E", // Replace this with your desired color
             },
           ],
         },
@@ -176,12 +196,12 @@ function ApexChart() {
 }
 // const options = ["Power", "Gas", "Water", "Compressed Air"];
 // const defaultOption = "Power";
-const HeatMap = () => {
+const WaterHeatMap = () => {
   return (
-    <div>   
+    <div>
       <ApexChart />;
     </div>
   );
 };
 
-export default HeatMap;
+export default WaterHeatMap;
