@@ -41,6 +41,9 @@ import HeatMap from "./components/HeatMap";
 
 import AppImages from "../../global/AppImages";
 import { Select } from "antd";
+import HeatMap1 from "./components/HeatMap1";
+import HeatMap2 from "./components/HeatMap2";
+import HeatMap3 from "./components/HeatMap3";
 const { Option } = Select;
 const statsData = [
   {
@@ -352,9 +355,9 @@ function Dashboard() {
               ))}
             </Select>
            { selectedOption == "Power" &&<HeatMap ></HeatMap>}
-           { selectedOption == "Gas" &&<p>dummy gas</p>}
-           { selectedOption == "Water" &&<p>dummy water</p>}
-           { selectedOption == "Compressed Air" &&<p>dummy compressed air</p>}
+           { selectedOption == "Gas" &&<HeatMap1></HeatMap1>}
+           { selectedOption == "Water" &&<HeatMap2></HeatMap2>}
+           { selectedOption == "Compressed Air" &&<HeatMap3></HeatMap3>}
 
             {/* <AmountStats /> */}
 
