@@ -101,7 +101,6 @@ function Dashboard() {
     const fetchData = async () => {
       try {
         let startDate, endDate;
-
         // Determine the start and end dates based on the selected date range
 
         if (selectedDateRange === "today") {
@@ -181,12 +180,9 @@ function Dashboard() {
 
         dispatch(setResponseDataZone1(zone1response.data.totalSum));
         dispatch(setResponseDataZone2(zone2response.data.totalSum));
-        // Handle the response data here if needed
-
-        // For example, you can set it in the component state
+     
       } catch (error) {
-        // Handle any errors that occur during the API call
-
+        
         console.error("Error fetching data:", error);
       }
     };
@@ -343,6 +339,7 @@ function Dashboard() {
 
         <div className=" dark:bg-gray-900 pt-3 pl-4 mt-3 pb-8 rounded-sm">
           <div className="grid lg:grid-cols-1 mt-3 px-6 grid-cols-1 gap-6">
+         
             <HeatMap></HeatMap>
 
             {/* <AmountStats /> */}

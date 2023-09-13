@@ -14,9 +14,9 @@ function ColumnChart() {
   const { selectedDateRange } = useSelector((state) => state.dateRange);
 
 
-  console.log(responseDataZone1, "this is zone 1");
-  console.log(responseDataZone2, "this is zone 2");
-  console.log(selectedDateRange, "this is date range");
+  // console.log(responseDataZone1, "this is zone 1");
+  // console.log(responseDataZone2, "this is zone 2");
+  // console.log(selectedDateRange, "this is date range");
 
   let startDate, endDate;
 

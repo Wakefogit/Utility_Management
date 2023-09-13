@@ -6,11 +6,10 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
 
 import React from "react";
-
 
 import ReactApexChart from "react-apexcharts";
 
@@ -18,7 +17,14 @@ import TitleCard from "../../../components/Cards/TitleCard";
 
 import { useSelector } from "react-redux";
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 function LineChart1() {
   const { responseData } = useSelector((state) => state.dateRange);
@@ -175,21 +181,9 @@ function LineChart1() {
     <TitleCard title={"Water"}>
       <style>
         {`
-
- 
-
           .apexcharts-menu-icon {
-
- 
-
             display: none !important;
-
- 
-
           }
-
- 
-
         `}
       </style>
 
@@ -199,7 +193,7 @@ function LineChart1() {
           series={chartSeries}
           type="bar"
           height={170}
-          colors={["red","yellow"]}
+          colors={["red", "yellow"]}
         />
       </div>
     </TitleCard>
@@ -207,4 +201,3 @@ function LineChart1() {
 }
 
 export default LineChart1;
-
