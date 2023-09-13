@@ -37,13 +37,15 @@ import {
 } from "../common/dateRangeSlice";
 import { setMetric } from "../common/MetricSlice";
 import { useState, useEffect } from "react";
-import HeatMap from "./components/HeatMap";
+
 
 import AppImages from "../../global/AppImages";
 import { Select } from "antd";
-import HeatMap1 from "./components/HeatMap1";
-import HeatMap2 from "./components/HeatMap2";
-import HeatMap3 from "./components/HeatMap3";
+
+import GasHeatMap from "./components/GasHeatMap";
+import PowerHeatMap from "./components/PowerHeatMap";
+import WaterHeatMap from "./components/WaterHeatMap";
+import AirHeatMap from "./components/AirHeatMap";
 const { Option } = Select;
 const statsData = [
   {
@@ -355,10 +357,10 @@ function Dashboard() {
                 <Option key={option}>{option}</Option>
               ))}
             </Select>
-           { selectedOption == "Power" &&<HeatMap ></HeatMap>}
-           { selectedOption == "Gas" &&<HeatMap1></HeatMap1>}
-           { selectedOption == "Water" &&<HeatMap2></HeatMap2>}
-           { selectedOption == "Compressed Air" &&<HeatMap3></HeatMap3>}
+           { selectedOption === "Power" &&<PowerHeatMap ></PowerHeatMap>}
+           { selectedOption === "Gas" &&<GasHeatMap></GasHeatMap>}
+           { selectedOption === "Water" &&<AirHeatMap></AirHeatMap>}
+           { selectedOption === "Compressed Air" &&<WaterHeatMap></WaterHeatMap>}
 
             {/* <AmountStats /> */}
 
