@@ -69,7 +69,7 @@ function Header() {
         <div className="h-2">
           <label
             htmlFor="left-sidebar-drawer"
-            className="btn btn-primary drawer-button lg:hidden"
+            className="drawer-button lg:hidden"
           >
             <Bars3Icon className="h-5 inline-block w-5 " />
           </label>

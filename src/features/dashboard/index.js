@@ -201,7 +201,7 @@ function Dashboard() {
   return (
     <>
       <div className="mt-[-30px]">
-        <div className=" dark:bg-gray-900 mt-3 p-2 rounded-sm">
+        <div className="  mt-3 p-2 rounded-sm">
           {/* {/* * ---------------------- Different stats content 1 -------------------------} */}
 
           <div className="grid lg:grid-cols-4 px-2 md:grid-cols-2 grid-cols-1 gap-4">
@@ -224,7 +224,7 @@ function Dashboard() {
 
           <div className=" flex wrap">
             <div className=" bg-base-100 dark:bg-gray-800  rounded-full  p-1 w-[259px] shadow-md backdrop-blur-lg backdrop-filter backdrop-saturate-150">
-              <ul class="flex flex-wrap text-sm font-medium gap-0  pb-[-200px] text-center text-gray-500 dark:text-gray-400">
+              <ul class="flex flex-wrap text-sm font-medium gap-0   pb-[-200px] text-center text-gray-500 dark:text-gray-400">
                 <li class="mr-2 p-0 ">
                   <button
                     onClick={() => {
@@ -291,7 +291,7 @@ function Dashboard() {
               </ul>
             </div>
 
-            <div className=" bg-base-100 dark:bg-gray-800 rounded-full p-1 w-auto shadow-md backdrop-blur-lg backdrop-filter backdrop-saturate-150 justify-end ml-auto mr-3">
+            <div className=" bg-base-100 dark:bg-gray-800 rounded-full p-1 shadow-md backdrop-blur-lg backdrop-filter backdrop-saturate-150 justify-end ml-auto mr-3">
               <ul class="flex flex-wrap text-sm font-medium gap-0 pb-[-199px] text-center text-gray-500 dark:text-gray-400">
                 <li class="mr-2 p-0">
                   <button
