@@ -201,17 +201,17 @@ function Dashboard() {
   return (
     <>
       <div className="mt-[-30px]">
-        <div className=" dark:bg-gray-900 mt-3 p-2 rounded-sm">
+        <div className=" dark:bg-gray-900 pt-2 p-2 rounded-sm">
           {/* {/* * ---------------------- Different stats content 1 -------------------------} */}
 
-          <div className="grid lg:grid-cols-4 px-2 md:grid-cols-2 grid-cols-1 gap-4">
+          <div className="grid lg:grid-cols-4 px-2 md:grid-cols-2 grid-cols-1 gap-4 pt-[7px] ">
             {statsData.map((d, k) => {
               return <DashboardStats key={k} {...d} colorIndex={k} />;
             })}
           </div>
         </div>
 
-        <div className="bg-slate-200 dark:bg-gray-900 pt-3 pl-4 mt-3 pb-8 rounded-md shadow-lg ">
+        <div className="bg-slate-200 dark:bg-gray-900 pt-[7px] pl-4 mt-1 pb-6 rounded-md shadow-lg ">
           {/* <div className="pt-3 px-5 m"> */}
 
           {/* * ---------------------- Select Period Content ------------------------- */}
@@ -223,7 +223,7 @@ function Dashboard() {
       </div> */}
 
           <div className=" flex wrap">
-            <div className=" bg-base-100 dark:bg-gray-800  rounded-full  p-1 w-[259px] shadow-md backdrop-blur-lg backdrop-filter backdrop-saturate-150">
+            <div className=" bg-base-100 dark:bg-gray-800  rounded-full mt-[4px] p-1 w-[259px] shadow-md backdrop-blur-lg backdrop-filter backdrop-saturate-150">
               <ul class="flex flex-wrap text-sm font-medium gap-0  pb-[-200px] text-center text-gray-500 dark:text-gray-400">
                 <li class="mr-2 p-0 ">
                   <button
@@ -330,7 +330,7 @@ function Dashboard() {
 
           {/** ---------------------- Different charts ------------------------- */}
 
-          <div className="grid lg:grid-cols-4 mt-[-10px] px-1 mr-4 gap-2 ">
+          <div className="grid lg:grid-cols-4 mb-[-6px] pb-[6px] px-1 mt-[-14px] mr-4 gap-2 ">
             <ColumnChart />
 
             <BarChart />
@@ -343,8 +343,9 @@ function Dashboard() {
 
         {/** ---------------------- Different stats content 2 ------------------------- */}
 
-        <div className=" dark:bg-gray-900 bg-base-300 pt-3 pl-4 mt-3 pb-3 rounded-sm shadow-lg">
-          <div className="grid lg:grid-cols-1 mt-3 px-6 grid-cols-1 gap-6">
+        <div className=" dark:bg-gray-900 bg-base-300 pt-3 pl-4  pb-3 mt-[13px] rounded-sm shadow-lg ">
+          <div className="grid lg:grid-cols-1 mt-[-3px] px-2 mb-[-2px] grid-cols-1">
+            
           
             <Select
               style={{ width: 200 }}
