@@ -1,116 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactApexChart from "react-apexcharts";
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react'
+import { useDispatch } from "react-redux";
 import DashboardTopBar from "../../features/dashboard/components/DashboardTopBar";
-import { setPageTitle } from '../../features/common/headerSlice'
+import { setPageTitle } from "../../features/common/headerSlice";
+
 function generateData(count, yrange) {
-  let i = 0;
   const series = [];
-  while (i < count) {
-    const x = "w" + (i + 1).toString();
+  const today = new Date();
+  for (let i = 0; i < count; i++) {
+    const date = new Date(today);
+    date.setDate(today.getDate() - i);
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const label = `${day}-${month}`;
     const y =
       Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
     series.push({
-      x: x,
+      x: label,
       y: y,
     });
-    i++;
   }
   return series;
 }
+
 function ApexChart() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-      dispatch(setPageTitle({ title : "Analytics"}))
-    }, [])
+    dispatch(setPageTitle({ title: "Analytics" }));
+  }, []);
+
   const seriesData = [
     {
-      name: "Jan",
-      data: generateData(20, {
-        min: -30,
-        max: 55,
-      }),
+      name: "Heatmap Data",
+      data: generateData(7, { min: -30, max: 55 }),
     },
-    {
-      name: "Feb",
-      data: generateData(20, {
-        min: -30,
-        max: 55,
-      }),
-    },
-    {
-      name: "Mar",
-      data: generateData(20, {
-        min: -30,
-        max: 55,
-      }),
-    },
-    {
-      name: "Apr",
-      data: generateData(20, {
-        min: -30,
-        max: 55,
-      }),
-    },
-    {
-      name: "May",
-      data: generateData(20, {
-        min: -30,
-        max: 55,
-      }),
-    },
-    {
-      name: "Jun",
-      data: generateData(20, {
-        min: -30,
-        max: 55,
-      }),
-    },
-    {
-      name: "July",
-      data: generateData(20, {
-        min: -30,
-        max: 55,
-      }),
-    },
-    {
-      name: "Aug",
-      data: generateData(20, {
-        min: -30,
-        max: 55,
-      }),
-    },
-    {
-      name: "Sep",
-      data: generateData(20, {
-        min: -30,
-        max: 55,
-      }),
-    },
-    {
-      name: "Oct",
-      data: generateData(20, {
-        min: -30,
-        max: 55,
-      }),
-    },
-    {
-      name: "Nov",
-      data: generateData(20, {
-        min: -30,
-        max: 55,
-      }),
-    },
-    {
-      name: "Dec",
-      data: generateData(20, {
-        min: -30,
-        max: 55,
-      }),
-    },   
-   
   ];
 
   const chartOptions = {
@@ -156,17 +80,16 @@ function ApexChart() {
     dataLabels: {
       enabled: false,
     },
-    stroke: {
-      width: 1,
+    xaxis: {
+      type: "category",
     },
-    // title: {
-    //   text: "HeatMap Chart with Color Range",
-    // },
+    yaxis: {
+      type: "category",
+    },
   };
 
   return (
     <div id="chart">
-      
       <ReactApexChart
         options={chartOptions}
         series={seriesData}
@@ -176,8 +99,14 @@ function ApexChart() {
     </div>
   );
 }
+
 const Analytics = () => {
-  return <ApexChart />;
+  return (
+    <div>
+      <DashboardTopBar />
+      <ApexChart />
+    </div>
+  );
 };
 
 export default Analytics;
