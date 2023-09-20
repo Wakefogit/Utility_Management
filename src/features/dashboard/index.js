@@ -27,7 +27,6 @@ import BarChart1 from "./components/BarChart1";
 import DashboardTopBar from "./components/DashboardTopBar";
 
 import { useDispatch, useSelector } from "react-redux";
-
 import DoughnutChart from "./components/DoughnutChart";
 
 import {
@@ -46,6 +45,8 @@ import GasHeatMap from "./components/GasHeatMap";
 import PowerHeatMap from "./components/PowerHeatMap";
 import WaterHeatMap from "./components/WaterHeatMap";
 import AirHeatMap from "./components/AirHeatMap";
+import Reports from "../../pages/protected/Reports/Reports";
+// import {  } from "chart.js/dist/chunks/helpers.core";
 const { Option } = Select;
 const statsData = [
   {
@@ -363,11 +364,9 @@ function Dashboard() {
            { selectedOption === "Water" &&<AirHeatMap></AirHeatMap>}
            { selectedOption === "Compressed Air" &&<WaterHeatMap></WaterHeatMap>}
 
-            {/* <AmountStats /> */}
-
-            {/* <PageStats /> */}
           </div>
         </div>
+   
       </div>
     </>
   )
