@@ -3,7 +3,7 @@ import { NavLink, Routes, Link, useLocation } from 'react-router-dom'
 import SidebarSubmenu from './SidebarSubmenu';
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon'
 import { useDispatch } from 'react-redux';
-import AppImages from "../global/AppImages";
+// import AppImages from "../global/AppImages";
 // import { primary } from 'daisyui/src/colors';
 
 function LeftSidebar() {
@@ -28,7 +28,7 @@ function LeftSidebar() {
 
                     <div className="text-3xl text-primary"><span src={AppImages.energy}></span></div> </li>
                      */}
-                     <img src={AppImages.logo} alt="Icon" className=" ml-3 w-40" />
+                     {/* <img src={AppImages.logo} alt="Icon" className=" ml-3 w-40" /> */}
                 {
                     routes.map((route, k) => {
 
