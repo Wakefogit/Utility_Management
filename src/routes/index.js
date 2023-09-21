@@ -93,6 +93,13 @@ const routes = [
     path: '/Reports',
     component: Reports,
   },
+  {
+
+    path: '/Price',
+
+    component: Price,
+
+  },
   // {
   //   path: '/power',
   //   component: Power,

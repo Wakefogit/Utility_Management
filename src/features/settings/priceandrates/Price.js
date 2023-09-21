@@ -21,7 +21,7 @@ const Price = () => {
           <div className="flex justify-between">
             <h2 className=" text-2xl font-medium mt-5 ml-5 mb-5 ">Electricity</h2>
 
-            <button className="ml-40 mb-5 mr-3 btn btn-success bg-transparent hover:bg-blue-500 text-blue-700 hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded float-right rounded-md cursor-pointer  w-96">
+            <button className="ml-40 mb-5 mr-3 btn btn-success bg-transparent hover:bg-blue-500 text-blue-700 hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent  float-right rounded-md cursor-pointer  w-96">
               <NavLink to="/app/price/electricitytariff">
                 + Add new electricity traffic
               </NavLink>
@@ -68,7 +68,7 @@ const Price = () => {
         <div className=" overflow-x-auto shadow-md sm:rounded-lg ">
           <div className="flex justify-between">
             <h2 className="text-2xl font-medium ml-5 mt-5 mb-5">Gas</h2>
-            <button className=" ml-40 mb-5 mr-3 btn btn-sucess  bg-transparent hover:bg-blue-500 text-blue-700  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded float-right rounded-md cursor-pointer ...  w-96">
+            <button className=" ml-40 mb-5 mr-3 btn btn-sucess  bg-transparent hover:bg-blue-500 text-blue-700  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent  float-right rounded-md cursor-pointer ...  w-96">
               + Add new gas traffic
             </button>
           </div>
@@ -111,7 +111,7 @@ const Price = () => {
         <div className=" overflow-x-auto shadow-md sm:rounded-lg ">
           <div className="flex justify-between">
             <h2 className="text-2xl font-medium  ml-5 mt-5 mb-5">Water</h2>
-            <button className=" ml-40 mb-5 mr-3 btn btn-sucess  bg-transparent hover:bg-blue-500 text-blue-700  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded float-right rounded-md cursor-pointer ... w-96 ">
+            <button className=" ml-40 mb-5 mr-3 btn btn-sucess  bg-transparent hover:bg-blue-500 text-blue-700  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent  float-right rounded-md cursor-pointer ... w-96 ">
               + Add new water traffic
             </button>
           </div>
@@ -154,7 +154,7 @@ const Price = () => {
         <div className=" overflow-x-auto shadow-md sm:rounded-lg ">
           <div className="flex justify-between">
             <h2 className="text-2xl font-medium ml-5 mt-5 mb-5">Compressed Air</h2>
-            <button className=" ml-40 mb-5 mr-3 btn btn-sucess  bg-transparent hover:bg-blue-500 text-blue-700  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded float-right rounded-md cursor-pointer ...  w-96">
+            <button className=" ml-40 mb-5 mr-3 btn btn-sucess  bg-transparent hover:bg-blue-500 text-blue-700  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent  float-right rounded-md cursor-pointer ...  w-96">
               + Add new compressed air traffic
             </button>
           </div>
