@@ -3,7 +3,7 @@ import { NavLink, Routes, Link, useLocation } from 'react-router-dom'
 import SidebarSubmenu from './SidebarSubmenu';
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon'
 import { useDispatch } from 'react-redux';
-import AppImages from "../global/AppImages";
+// import AppImages from "../global/AppImages";
 // import { primary } from 'daisyui/src/colors';
 
 function LeftSidebar() {
@@ -17,18 +17,18 @@ function LeftSidebar() {
     }
 
     return (
-        <div className="drawer-side">
+        <div className="drawer-side ">
             <label htmlFor="left-sidebar-drawer" className="shadow-lg drawer-overlay"></label>
-            <ul className="menu  w-48 bg-blue-900 dark:bg-gray-900 text-white">
+            <ul className="menu w-64 bg-blue-900 dark:bg-gray-900 text-white">
                 <button className="btn btn-ghost bg-base-300  btn-circle z-50 top-0 right-0 absolute lg:hidden" onClick={() => close()}>
                     <XMarkIcon className=" inline-block " />
                 </button>
-
+            
                 {/* <li className=" font-semibold text-xl h-16 p-0 ">
 
                     <div className="text-3xl text-primary"><span src={AppImages.energy}></span></div> </li>
                      */}
-                     <img src={AppImages.logo} alt="Icon" className=" ml-3 w-40" />
+                     {/* <img src={AppImages.logo} alt="Icon" className=" ml-3 w-40" /> */}
                 {
                     routes.map((route, k) => {
 
