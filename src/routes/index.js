@@ -20,6 +20,7 @@ const GettingStarted = lazy(() => import('../pages/GettingStarted'))
 const DocFeatures = lazy(() => import('../pages/DocFeatures'))
 const DocComponents = lazy(() => import('../pages/DocComponents'))
 const Analytics = lazy(() => import('../pages/protected/Analytics'))
+const Electricity = lazy(() => import('../features/settings/priceandrates/trafficpages/electricity'))
 
 
 const routes = [
@@ -51,10 +52,7 @@ const routes = [
     path: '/settings-profile',
     component: ProfileSettings,
   },
-  {
-    path: '/Price',
-    component: Price,
-  },
+ 
   {
     path: '/getting-started',
     component: GettingStarted,
@@ -88,13 +86,17 @@ const routes = [
     component: Analytics,
   },
   {
+    path: '/price/electricitytariff',
+    component: Electricity,
+  },
+  {
     path: '/Reports',
     component: Reports,
   },
-  {
-    path: '/power',
-    component: Power,
-  },
+  // {
+  //   path: '/power',
+  //   component: Power,
+  // },
   // {
   //   path:'/Power1',
   //   component:Power1,

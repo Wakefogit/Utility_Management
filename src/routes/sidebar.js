@@ -85,7 +85,7 @@ const routes = [
 
     submenu: [
       {
-        path: "/app/Power", //url
+        path: "/Power", //url
 
         icon: < BoltIcon className={`${iconClasses} inline `} />, // icon component
 
