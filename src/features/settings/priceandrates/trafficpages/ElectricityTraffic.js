@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function ElectricityTraffic() {
+ const  ElectricityTraffic = () => {
   return (
     <div>
 
@@ -78,3 +78,5 @@ export function ElectricityTraffic() {
     </div>
   );
 }
+
+export default ElectricityTraffic;

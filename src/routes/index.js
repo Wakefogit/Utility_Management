@@ -20,7 +20,7 @@ const GettingStarted = lazy(() => import('../pages/GettingStarted'))
 const DocFeatures = lazy(() => import('../pages/DocFeatures'))
 const DocComponents = lazy(() => import('../pages/DocComponents'))
 const Analytics = lazy(() => import('../pages/protected/Analytics'))
-const Electricity = lazy(() => import('../features/settings/priceandrates/trafficpages/electricity'))
+const ElectricityTraffic = lazy(() => import('../features/settings/priceandrates/trafficpages/ElectricityTraffic'))
 
 
 const routes = [
@@ -86,19 +86,16 @@ const routes = [
     component: Analytics,
   },
   {
-    path: '/price/electricitytariff',
-    component: Electricity,
+    path: '/Price/electricitytariff',
+    component: ElectricityTraffic,
   },
   {
     path: '/Reports',
     component: Reports,
   },
   {
-
     path: '/Price',
-
     component: Price,
-
   },
   // {
   //   path: '/power',
