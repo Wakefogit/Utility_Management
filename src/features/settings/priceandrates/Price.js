@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { blue } from "@mui/material/colors";
 import { useDispatch } from "react-redux";
 import { setPageTitle } from "../../common/headerSlice";
-
+import { ElectricityTraffic } from "./trafficpages/ElectricityTraffic";
 const Price = () => {
   const dispatch = useDispatch();
 
@@ -20,7 +20,7 @@ const Price = () => {
           <div class="flex justify-between">
             <h2 class=" text-2xl font-medium mt-5 ml-5 mb-5 ">Electricity</h2>
             <button class=" ml-40 mb-2 mt-2 mr-3 btn btn-sucess  bg-transparent hover:bg-blue-500 text-blue-700  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded float-right rounded-md cursor-pointer ... ">
-              + Add new electcity traffic
+              + Add new electcity traffic 
             </button>
           </div>
           <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -146,12 +146,12 @@ const Price = () => {
       </div>
 
       {/* This id for Compressed Air*/}
-      <div class="pb-10">
+      <div className="pb-10">
         <div class=" overflow-x-auto shadow-md sm:rounded-lg ">
           <div class="flex justify-between">
             <h2 class="text-2xl font-medium ml-5 mt-5 mb-5">Compressed Air</h2>
             <button class=" ml-40 mb-5 mr-3 btn btn-sucess  bg-transparent hover:bg-blue-500 text-blue-700  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded float-right rounded-md cursor-pointer ... ">
-              + Add new electricity traffic
+              + Add new compressed air traffic
             </button>
           </div>
           <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -187,6 +187,7 @@ const Price = () => {
           </table>
         </div>
       </div>
+      <ElectricityTraffic></ElectricityTraffic>
     </div>
   );
 };
