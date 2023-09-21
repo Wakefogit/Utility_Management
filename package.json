@@ -22,12 +22,8 @@
     "daisyui": "^2.41.0",
     "date-fns": "^2.30.0",
     "dayjs": "^1.11.7",
-<<<<<<< HEAD
-    "font-awesome": "^4.7.0",
-=======
     "echarts": "^5.4.3",
     "echarts-for-react": "^3.0.2",
->>>>>>> 1288aab902e5ec23f433bf07741c9387ffd035dd
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",
