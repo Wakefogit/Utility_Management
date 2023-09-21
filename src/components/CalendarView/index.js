@@ -197,7 +197,7 @@ function CalendarView({ calendarEvents, addNewEvent, openDayDetail }) {
                 }
               >
                 <p
-                  className={`inline-block flex items-center  justify-center h-8 w-8 rounded-full mx-1 mt-1 text-sm cursor-pointer hover:bg-base-300 ${
+                  className={`inline-block  items-center  justify-center h-8 w-8 rounded-full mx-1 mt-1 text-sm cursor-pointer hover:bg-base-300 ${
                     isToday(day) &&
                     " bg-blue-100 dark:bg-blue-400 dark:hover:bg-base-300 dark:text-white"
                   } ${

@@ -19,7 +19,7 @@ const Register = lazy(() => import('./pages/Register'))
 
 const UserCreation = lazy(() => import('./pages/User'))
 const Analytics = lazy(() => import('./pages/protected/Analytics'))
-
+const Power = lazy(() => import ('./pages/Power') )
 // Initializing different libraries
 // initializeApp()
 
@@ -52,6 +52,7 @@ function App() {
 
           <Route path="/register" element={<Register />} />
           <Route path="/layout" element={<Layout />} />
+          <Route path="/Power" element={< Power/>} />
 
        
           {/* Place new routes over this */}
