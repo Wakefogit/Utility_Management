@@ -231,7 +231,7 @@ const routes = [
       },
 
       {
-        path: "/app/", //url
+        path: "/app/Price", //url
 
         icon: (
           <svg
