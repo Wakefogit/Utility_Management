@@ -27,7 +27,6 @@ import BarChart1 from "./components/BarChart1";
 import DashboardTopBar from "./components/DashboardTopBar";
 
 import { useDispatch, useSelector } from "react-redux";
-
 import DoughnutChart from "./components/DoughnutChart";
 
 
@@ -49,6 +48,8 @@ import WaterHeatMap from "./components/WaterHeatMap";
 import AirHeatMap from "./components/AirHeatMap";
 import Live from "./components/Live";
 import Linechart from "./components/Linechart";
+import Reports from "../../pages/protected/Reports/Reports";
+// import {  } from "chart.js/dist/chunks/helpers.core";
 const { Option } = Select;
 const statsData = [
   {
@@ -100,7 +101,7 @@ function Dashboard() {
 
   const { selectedDateRange } = useSelector((state) => state.dateRange);
 
-  const handleDateRangeChange = (newDateRange) => {
+  const handleDateRangeChange = (newDateRange) => {    
     dispatch(setDateRange(newDateRange));
   };
   const handleMetricChange = (newMetric) => {
@@ -112,70 +113,35 @@ function Dashboard() {
     const fetchData = async () => {
       try {
         let startDate, endDate;
-        // Determine the start and end dates based on the selected date range
 
         if (selectedDateRange === "today") {
-          // Get the current date for "Today"
-
           const currentDate = new Date().toISOString().slice(0, 10);
-
           startDate = currentDate;
-
           endDate = currentDate;
-
-          console.log(startDate, endDate, "this is current date");
         } else if (selectedDateRange === "week") {
           const currentDate = new Date();
-          const currentDayOfWeek = currentDate.getDay(); // 0 for Sunday, 1 for Monday, etc.
-
-          // Calculate the difference between the current day of the week and Sunday (0)
-          const daysUntilSunday =
-            currentDayOfWeek === 0 ? 0 : 7 - currentDayOfWeek;
-
-          // Calculate the start date (beginning of the week)
-          const startOfCurrentWeek = new Date(
-            currentDate.getFullYear(),
-            currentDate.getMonth(),
-            currentDate.getDate() - daysUntilSunday
+          const currentDayOfWeek = currentDate.getDay();
+          const startOfCurrentWeek = new Date(currentDate);
+          startOfCurrentWeek.setDate(currentDate.getDate() - currentDayOfWeek);
+          const endOfCurrentWeek = new Date(currentDate);
+          endOfCurrentWeek.setDate(
+            currentDate.getDate() + (6 - currentDayOfWeek)
           );
-
-          // Calculate the end date (end of the week)
-          const endOfCurrentWeek = new Date(
-            startOfCurrentWeek.getFullYear(),
-            startOfCurrentWeek.getMonth(),
-            startOfCurrentWeek.getDate() + 6
-          );
-
-          // Format the start and end dates
           startDate = startOfCurrentWeek.toISOString().slice(0, 10);
           endDate = endOfCurrentWeek.toISOString().slice(0, 10);
-
-          console.log(startDate, endDate, "this is week");
         } else if (selectedDateRange === "month") {
-          // Get the current month and year for "Month"
-
           const currentDate = new Date();
-
-          startDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1
-            }-01`;
-
-          endDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1
-            }-${currentDate.getDate()}`;
-
-          console.log(startDate, endDate, "this is month");
+          const year = currentDate.getFullYear();
+          const month = (currentDate.getMonth() + 1).toString().padStart(2, "0");
+          startDate = `${year}-${month}-01`;
+          endDate = `${year}-${month}-${currentDate.getDate()}`;
         } else if (selectedDateRange === "year") {
-          // Get the current year for "Year"
-
-          const currentYear = new Date().getFullYear();
-
+          const currentYear = new Date().getFullYear().toString();
           startDate = `${currentYear}-01-01`;
-
           endDate = `${currentYear}-12-31`;
-
-          console.log(startDate, endDate, "this is year");
         }
 
-        // Make an API call to your backend with the selected date range
+        console.log(startDate, endDate, "this is outside value");
 
         const zone1response = await axios.get(
           `http://192.168.0.104:8080/energy/zone1?startDate=${startDate}&endDate=${endDate}`
@@ -185,7 +151,7 @@ function Dashboard() {
         );
 
         console.log(zone1response.data, "Zone1data");
-        console.log(zone2response.data);
+        console.log(zone2response.data, "Zone2data");
 
         dispatch(setResponseDataZone1(zone1response.data.totalSum));
         dispatch(setResponseDataZone2(zone2response.data.totalSum));
@@ -193,8 +159,6 @@ function Dashboard() {
         console.error("Error fetching data:", error);
       }
     };
-
-    // Call the fetchData function when the component mounts or when the selectedDateRange changes
 
     fetchData();
   }, [selectedDateRange]);
@@ -379,12 +343,11 @@ function Dashboard() {
           <div className="bg-white">
         <Linechart></Linechart>
         </div>
-</div>
-</div>
-
+      </div>
+      </div>
       </div>
     </>
-  )
+  );
 }
 
 export default Dashboard;

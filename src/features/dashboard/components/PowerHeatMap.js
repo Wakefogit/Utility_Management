@@ -1,53 +1,10 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-
-function generateData(count, yrange) {
-  let i = 0;
-  const series = [];
-  const startTime = "00:00";
-  const endTime = "23:00"; // End time set to 23:00 (11:00 PM)
-  const intervalInMinutes = 60; // 1 hour in minutes
-
-  while (i < count) {
-    const timePartsStart = startTime.split(":");
-    const hoursStart = parseInt(timePartsStart[0], 10);
-    const minutesStart = parseInt(timePartsStart[1], 10);
-
-    const timePartsEnd = endTime.split(":");
-    const hoursEnd = parseInt(timePartsEnd[0], 10);
-    const minutesEnd = parseInt(timePartsEnd[1], 10);
-
-    const newTime = new Date();
-    newTime.setHours(hoursStart);
-    newTime.setMinutes(minutesStart + i * intervalInMinutes);
-
-    if (newTime.getHours() <= hoursEnd) {
-      const formattedTime = newTime.toLocaleTimeString("en-US", {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false, // Force 24-hour format
-      });
-
-      // Replace "24:00" with "00:00"
-      const adjustedTime = formattedTime.replace("24:00", "00:00");
-
-      const y =
-        Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
-      series.push({
-        x: adjustedTime,
-        y: y,
-      });
-    }
-
-    i++;
-  }
-
-  return series
-}
 function ApexChart() {
+  const [heatmapvalue, setHeatMapValue] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -73,16 +30,34 @@ function ApexChart() {
           const day = String(date.getDate()).padStart(2, "0");
           return `${year}-${month}-${day}`;
         }
-
+        console.log(
+          startDate,
+          endDate,
+          "this is start & end inside powerheatmap"
+        );
         // Make an API call to fetch data for the previous week
         // Modify this URL to match your API endpoint
         const response = await axios.get(
           `http://192.168.0.104:8080/energy/zone1heatmap?startDate=${startDate}&endDate=${endDate}`
         );
 
-        console.log(response.data);
-
-        // Dispatch actions or set the data in your component state as needed
+        console.log(response.data.rows,"this is newvalue");
+        let dataArray = response.data; // Assuming response.data is an array
+        if (!Array.isArray(dataArray)) {
+          // If response.data is not an array, try to extract the array from a different property
+          // Replace 'dataField' with the actual property name containing your data
+          dataArray = response.data.rows;
+        }
+  
+        // Extract and format data from the array
+        const formattedData = dataArray.map(item => ({
+          x: item._time.split('T')[1].split(':')[0], // Extract the hour
+          y: item._value, // Replace 'someValue' with the actual value field
+        }));
+     
+        // setHeatmapData(formattedData);
+ 
+         setHeatMapValue(formattedData);
       } catch (error) {
         // Handle any errors that occur during the API call
         console.error("Error fetching data:", error);
@@ -104,23 +79,48 @@ function ApexChart() {
     const formattedDate = formatDateForChart(currentDateInLoop);
     seriesData.push({
       name: formattedDate,
-      data: generateData(24, {
-        min: 0,
-        max: 80,
-      }),
+      data: generateData(
+        24,
+        {
+          min: 0,
+          max: 50000,
+        },
+        heatmapvalue
+      ),
     });
     currentDateInLoop.setDate(currentDateInLoop.getDate() + 1);
   }
 
   // Function to format a date as "Mo 02/09" format
   function formatDateForChart(date) {
-    const dayOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][date.getDay()];
+    const dayOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][
+      date.getDay()
+    ];
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
     return `${dayOfWeek} ${day}/${month}`;
   }
-
+  function generateTimeCategories() {
+    const categories = [];
+    for (let i = 0; i < 24; i++) {
+      const hour = i < 10 ? `0${i}` : `${i}`;
+      categories.push(`${hour}:00`);
+    }
+    return categories;
+  }
+  function generateData() {
+    const series = heatmapvalue.map(item => ({
+      x: item.x, // Hour
+      y: item.y, // Value
+    }));
+  
+    return series;
+  }
   const chartOptions = {
+    xaxis: {
+      type: "category",
+      categories: generateTimeCategories(),
+    },
     plotOptions: {
       heatmap: {
         // shadeIntensity: 0.5, // Adjust the intensity of the color
@@ -128,32 +128,32 @@ function ApexChart() {
           ranges: [
             {
               from: 0,
-              to: 20,
+              to: 100,
               name: "0Wh",
               color: "#EEE3CF", // Replace this with your desired color
             },
             {
-              from: 21,
-              to: 30,
+              from: 100,
+              to: 200,
               name: "100Wh",
               color: "#DEBB85", // Replace this with your desired color
             },
 
             {
-              from: 31,
-              to: 50,
+              from: 201,
+              to: 300,
               name: "200Wh",
               color: "#D2995B", // Replace this with your desired color
             },
             {
-              from: 51,
-              to: 70,
+              from: 301,
+              to: 400,
               name: "300Wh",
               color: "#BD7A32", // Replace this with your desired color
             },
             {
-              from: 71,
-              to: 80,
+              from: 401,
+              to: 500,
               name: "100Wh",
               color: "#964E15", // Replace this with your desired color
             },
@@ -172,13 +172,13 @@ function ApexChart() {
         height={350}
       />
     </div>
-  )
+  );
 }
 // const options = ["Power", "Gas", "Water", "Compressed Air"];
 // const defaultOption = "Power";
 const PowerHeatMap = () => {
   return (
-    <div>   
+    <div>
       <ApexChart />
     </div>
   );

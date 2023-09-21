@@ -17,13 +17,13 @@ function LeftSidebar() {
     }
 
     return (
-        <div className="drawer-side">
+        <div className="drawer-side ">
             <label htmlFor="left-sidebar-drawer" className="shadow-lg drawer-overlay"></label>
-            <ul className="menu  w-48 bg-blue-900 dark:bg-gray-900 text-white">
+            <ul className="menu w-64 bg-blue-900 dark:bg-gray-900 text-white">
                 <button className="btn btn-ghost bg-base-300  btn-circle z-50 top-0 right-0 absolute lg:hidden" onClick={() => close()}>
                     <XMarkIcon className=" inline-block " />
                 </button>
-
+            
                 {/* <li className=" font-semibold text-xl h-16 p-0 ">
 
                     <div className="text-3xl text-primary"><span src={AppImages.energy}></span></div> </li>

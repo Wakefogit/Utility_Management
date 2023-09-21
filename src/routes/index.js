@@ -1,6 +1,8 @@
 // All components mapping with path for internal routes
-
+// import Price from '../features/settings/Price'
 import { lazy } from 'react'
+import Reports from '../pages/protected/Reports/Reports'
+import Power from '../pages/Power'
 
 const Dashboard = lazy(() => import('../pages/protected/Dashboard'))
 const Welcome = lazy(() => import('../pages/protected/Welcome'))
@@ -12,7 +14,7 @@ const Integration = lazy(() => import('../pages/protected/Integration'))
 const Calendar = lazy(() => import('../pages/protected/Calendar'))
 const Team = lazy(() => import('../pages/protected/Team'))
 const Transactions = lazy(() => import('../pages/protected/Transactions'))
-const Bills = lazy(() => import('../pages/protected/Bills'))
+const Price = lazy(() => import('../features/settings/priceandrates/Price'))
 const ProfileSettings = lazy(() => import('../pages/protected/ProfileSettings'))
 const GettingStarted = lazy(() => import('../pages/GettingStarted'))
 const DocFeatures = lazy(() => import('../pages/DocFeatures'))
@@ -50,8 +52,8 @@ const routes = [
     component: ProfileSettings,
   },
   {
-    path: '/settings-',
-    component: Bills,
+    path: '/Price',
+    component: Price,
   },
   {
     path: '/getting-started',
@@ -85,6 +87,18 @@ const routes = [
     path: '/analytics',
     component: Analytics,
   },
+  {
+    path: '/Reports',
+    component: Reports,
+  },
+  {
+    path: '/power',
+    component: Power,
+  },
+  // {
+  //   path:'/Power1',
+  //   component:Power1,
+  // }
 ]
 
 export default routes
