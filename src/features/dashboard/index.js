@@ -288,7 +288,7 @@ function Dashboard() {
               </ul>
             </div>
 
-            <div className=" bg-base-100 dark:bg-gray-800 rounded-full p-1 w-auto shadow-md backdrop-blur-lg backdrop-filter backdrop-saturate-150 justify-end ml-auto mr-3">
+            <div className=" bg-base-100 dark:bg-gray-800 rounded-full p-1 w-auto shadow-md backdrop-blur-lg backdrop-filter backdrop-saturate-150 justify-end ml-auto mr-3 ">
               <ul class="flex flex-wrap text-sm font-medium gap-0 pb-[-199px] text-center text-gray-500 dark:text-gray-400">
                 <li class="mr-2 p-0">
                   <button
