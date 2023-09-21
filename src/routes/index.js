@@ -1,6 +1,8 @@
 // All components mapping with path for internal routes
 // import Price from '../features/settings/Price'
 import { lazy } from 'react'
+import Reports from '../pages/protected/Reports/Reports'
+import Power from '../pages/Power'
 
 const Dashboard = lazy(() => import('../pages/protected/Dashboard'))
 const Welcome = lazy(() => import('../pages/protected/Welcome'))
@@ -85,6 +87,18 @@ const routes = [
     path: '/analytics',
     component: Analytics,
   },
+  {
+    path: '/Reports',
+    component: Reports,
+  },
+  {
+    path: '/power',
+    component: Power,
+  },
+  // {
+  //   path:'/Power1',
+  //   component:Power1,
+  // }
 ]
 
 export default routes
