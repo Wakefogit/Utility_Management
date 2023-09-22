@@ -1,17 +1,11 @@
 // import React from "react";
 
 import VisibilityIcon from "@mui/icons-material/Visibility";
-
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-
 import { useEffect } from "react";
-
 import { blue } from "@mui/material/colors";
-
 import { useDispatch } from "react-redux";
-
 import { NavLink } from "react-router-dom";
-
 import { setPageTitle } from "../../common/headerSlice";
 
 const Price = () => {
@@ -45,15 +39,12 @@ const Price = () => {
                 <th scope="col" className="px-6 py-3">
                   Detail
                 </th>
-
                 <th scope="col" className="px-6 py-3">
                   Valid for
                 </th>
-
                 <th scope="col" className="px-6 py-3">
                   Standing charge
                 </th>
-
                 <th scope="col" className="px-6 py-3">
                   Price
                 </th>
@@ -72,9 +63,7 @@ const Price = () => {
                 </th>
 
                 <td className="px-6 py-4">1 Jan 2000 — until now</td>
-
                 <td className="px-6 py-4">3.60 €/month</td>
-
                 <td className="px-6 py-4">Level 1: 200.00</td>
               </tr>
             </tbody>
