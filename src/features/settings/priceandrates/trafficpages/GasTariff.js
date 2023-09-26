@@ -149,7 +149,7 @@ const GasTafiff = () => {
         htmlFor="currency"
         className="block text-xl font-medium text-gray-900 dark:text-white"
       >
-        Currency <span className="text-red-500">*</span>
+        Choose currency <span className="text-red-500">*</span>
       </label>
       <Select
         sx={{ width: "75%", height: "45px" }}
@@ -257,7 +257,7 @@ const GasTafiff = () => {
         }
       />
       <span className="text-sm ml-3 text-gray-500">
-        {formik.values.currency} / month{" "}
+        {formik.values.currency} / kWh{" "}
       </span>
       <div>
           <HelpOutlinedIcon

@@ -171,7 +171,7 @@ const navigate = useNavigate()
           htmlFor="currency"
           className="block text-xl font-medium text-gray-900 dark:text-white"
         >
-          Currency <span className="text-red-500">*</span>
+          Choose currency <span className="text-red-500">*</span>
         </label>
         <Select
           sx={{ width: "75%", height: "45px" }}
@@ -231,7 +231,6 @@ const navigate = useNavigate()
             <Modal
               open={standingChargeModalOpen} // Use the correct state variable
               onClick={handleStandingChargeClose}
-              onClose={handleLowTariffClose} // Use the correct close handler
               aria-labelledby="modal-modal-title"
               aria-describedby="modal-modal-description"
             >
