@@ -57,7 +57,7 @@ const ElectricityTraffic = () => {
     validationSchema,
     onSubmit: async (values) => {
       // Handle form submission and send data to the backend here
-      console.log(values);
+ 
       const apiUrl = "http://localhost:8080/createelectricity";
       const response  = await axios.post(
         apiUrl,
