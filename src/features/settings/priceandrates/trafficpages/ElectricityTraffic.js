@@ -14,7 +14,7 @@ import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -46,7 +46,7 @@ const initialValues = {
 
 const ElectricityTraffic = () => {
   const dispatch = useDispatch();
-const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(setPageTitle({ title: "Electricity  Tariff" }));
@@ -55,16 +55,33 @@ const navigate = useNavigate()
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       // Handle form submission and send data to the backend here
       console.log(values);
-
+      const apiUrl = "http://localhost:8080/createelectricity";
+      const response  = await axios.post(
+        apiUrl,
+        {
+          fromDate:values.validFrom,
+          toDate:values.validTo === '' ? null : values.validTo,
+          currency:values.currency,
+          charge:values.standingCharge,
+          basicPrice:values.basicTariffRate,
+          lowPrice:values.lowTariffRate === ''? null : values.lowTariffRate,
+          note:values.note === '' ? null : values.note
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(response);
       if (formik.isValid) {
         // Redirect to /app/Price
         navigate("/app/Price");
-    }
-  }
-
+      }
+    },
   });
 
   // const [validFrom, setValidFrom] = useState("");
@@ -111,7 +128,6 @@ const navigate = useNavigate()
   // };
 
   return (
-
     <form onSubmit={formik.handleSubmit} className="m-8 space-y-4">
       {/*valid from */}
       <div>
@@ -139,7 +155,7 @@ const navigate = useNavigate()
         />
       </div>
 
-{/*  valid to*/}
+      {/*  valid to*/}
       <div>
         <label
           htmlFor="validTo"
@@ -165,7 +181,7 @@ const navigate = useNavigate()
         />
       </div>
 
-{/* currency */}
+      {/* currency */}
       <div>
         <label
           htmlFor="currency"
@@ -190,7 +206,7 @@ const navigate = useNavigate()
         </Select>
       </div>
 
-{/* standing charge */}
+      {/* standing charge */}
       <div>
         <label
           htmlFor="standingCharge"
@@ -198,32 +214,32 @@ const navigate = useNavigate()
         >
           Standing charge <span className="text-red-500">*</span>
         </label>
-        <div className="flex items-center"> 
-        <TextField
-        sx={{
-          width: "75%",
-          "& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input": {
-            height: "0.8375em",
-          },
-        }}
-          id="standingCharge"
-          name="standingCharge"
-          type="text"
-          value={formik.values.standingCharge}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={
-            formik.touched.standingCharge &&
-            Boolean(formik.errors.standingCharge)
-          }
-          helperText={
-            formik.touched.standingCharge && formik.errors.standingCharge
-          }
-        />
-        <span className="text-sm ml-3 text-gray-500">
-          {formik.values.currency} / month{" "}
-        </span>
-        <div>
+        <div className="flex items-center">
+          <TextField
+            sx={{
+              width: "75%",
+              "& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input": {
+                height: "0.8375em",
+              },
+            }}
+            id="standingCharge"
+            name="standingCharge"
+            type="text"
+            value={formik.values.standingCharge}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={
+              formik.touched.standingCharge &&
+              Boolean(formik.errors.standingCharge)
+            }
+            helperText={
+              formik.touched.standingCharge && formik.errors.standingCharge
+            }
+          />
+          <span className="text-sm ml-3 text-gray-500">
+            {formik.values.currency} / month{" "}
+          </span>
+          <div>
             <HelpOutlinedIcon
               onClick={handleStandingChargeOpen}
               className="ml-3"
@@ -236,11 +252,12 @@ const navigate = useNavigate()
             >
               <Box sx={style}>
                 <Typography id="modal-modal-title" variant="h6" component="h2">
-                Standing charge
+                  Standing charge
                 </Typography>
-                <Typography id="modal-modal-description" >
-                Enter the value of your monthly fees for electricity.
-                If you aren't sure about it, check the costs in your last electricity invoice or in pricelist of your electricity retailer.
+                <Typography id="modal-modal-description">
+                  Enter the value of your monthly fees for electricity. If you
+                  aren't sure about it, check the costs in your last electricity
+                  invoice or in pricelist of your electricity retailer.
                 </Typography>
               </Box>
             </Modal>
@@ -248,7 +265,7 @@ const navigate = useNavigate()
         </div>
       </div>
 
-{/*basic rate */}
+      {/*basic rate */}
       <div>
         <label
           htmlFor="basicTariffRate"
@@ -256,32 +273,32 @@ const navigate = useNavigate()
         >
           Price for basic tariff rate <span className="text-red-500">*</span>
         </label>
-        <div className="flex items-center" >
-        <TextField
-        sx={{
-          width: "75%",
-          "& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input": {
-            height: "0.8375em",
-          },
-        }}
-          id="basicTariffRate"
-          name="basicTariffRate"
-          type="text"
-          value={formik.values.basicTariffRate}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={
-            formik.touched.basicTariffRate &&
-            Boolean(formik.errors.basicTariffRate)
-          }
-          helperText={
-            formik.touched.basicTariffRate && formik.errors.basicTariffRate
-          }
-        />
-        <span className="text-sm ml-3 text-gray-500">
-          {formik.values.currency} / month{" "}
-        </span>
-        <div>
+        <div className="flex items-center">
+          <TextField
+            sx={{
+              width: "75%",
+              "& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input": {
+                height: "0.8375em",
+              },
+            }}
+            id="basicTariffRate"
+            name="basicTariffRate"
+            type="text"
+            value={formik.values.basicTariffRate}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={
+              formik.touched.basicTariffRate &&
+              Boolean(formik.errors.basicTariffRate)
+            }
+            helperText={
+              formik.touched.basicTariffRate && formik.errors.basicTariffRate
+            }
+          />
+          <span className="text-sm ml-3 text-gray-500">
+            {formik.values.currency} / month{" "}
+          </span>
+          <div>
             <HelpOutlinedIcon
               onClick={handleBasicTariffOpen}
               className="ml-3"
@@ -294,11 +311,13 @@ const navigate = useNavigate()
             >
               <Box sx={style}>
                 <Typography id="modal-modal-title" variant="h6" component="h2">
-                Basic tariff rate
+                  Basic tariff rate
                 </Typography>
                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                Enter the value of your cost for electricity consumed in basic tariff rate.
-                If you aren't sure about it, check the costs in your last electricity invoice or in pricelist of your electricity retailer.
+                  Enter the value of your cost for electricity consumed in basic
+                  tariff rate. If you aren't sure about it, check the costs in
+                  your last electricity invoice or in pricelist of your
+                  electricity retailer.
                 </Typography>
               </Box>
             </Modal>
@@ -306,7 +325,7 @@ const navigate = useNavigate()
         </div>
       </div>
 
-{/*low rate */}
+      {/*low rate */}
       <div>
         <label
           htmlFor="lowTariffRate"
@@ -315,30 +334,31 @@ const navigate = useNavigate()
           Price for low tariff rate
         </label>
         <div className="flex items-center">
-        <TextField
-          sx={{
-            width: "75%",
-            "& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input": {
-              height: "0.8375em",
-            },
-          }}
-          id="lowTariffRate"
-          name="lowTariffRate"
-          type="text"
-          value={formik.values.lowTariffRate}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={
-            formik.touched.lowTariffRate && Boolean(formik.errors.lowTariffRate)
-          }
-          helperText={
-            formik.touched.lowTariffRate && formik.errors.lowTariffRate
-          }
-        />
-        <span className="text-sm mt-1 ml-3 text-gray-500">
-          {formik.values.currency} / month
-        </span>
-        <div>
+          <TextField
+            sx={{
+              width: "75%",
+              "& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input": {
+                height: "0.8375em",
+              },
+            }}
+            id="lowTariffRate"
+            name="lowTariffRate"
+            type="text"
+            value={formik.values.lowTariffRate}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={
+              formik.touched.lowTariffRate &&
+              Boolean(formik.errors.lowTariffRate)
+            }
+            helperText={
+              formik.touched.lowTariffRate && formik.errors.lowTariffRate
+            }
+          />
+          <span className="text-sm mt-1 ml-3 text-gray-500">
+            {formik.values.currency} / month
+          </span>
+          <div>
             <HelpOutlinedIcon
               onClick={handleLowTariffOpen}
               className="ml-3"
@@ -365,7 +385,7 @@ const navigate = useNavigate()
         </div>
       </div>
 
-{/* Note */}
+      {/* Note */}
       <div>
         <label
           htmlFor="note"
@@ -385,7 +405,7 @@ const navigate = useNavigate()
         ></textarea>
       </div>
 
-{/* Button*/}
+      {/* Button*/}
       <div className="pt-10  pr-40 pb-40">
         <Button
           type="submit"
@@ -397,9 +417,7 @@ const navigate = useNavigate()
           Save Electricity Traffic
         </Button>
       </div>
-    
     </form>
-
   );
 };
 
