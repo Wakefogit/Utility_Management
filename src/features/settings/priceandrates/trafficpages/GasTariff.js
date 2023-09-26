@@ -79,8 +79,8 @@ const GasTafiff = () => {
   const handleBasicTariffOpen = () => setBasicTariffModalOpen(true);
   const handleBasicTariffClose = () => setBasicTariffModalOpen(false);
 
-  const handleLowTariffOpen = () => setLowTariffModalOpen(true);
-  const handleLowTariffClose = () => setLowTariffModalOpen(false);
+  // const handleLowTariffOpen = () => setLowTariffModalOpen(true);
+  // const handleLowTariffClose = () => setLowTariffModalOpen(false);
 
 
   // Event handler for currency selection
@@ -212,7 +212,7 @@ const GasTafiff = () => {
           <Modal
             open={standingChargeModalOpen} // Use the correct state variable
             onClick={handleStandingChargeClose}
-            onClose={handleLowTariffClose} // Use the correct close handler
+            // onClose={handleLowTariffClose} // Use the correct close handler
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
