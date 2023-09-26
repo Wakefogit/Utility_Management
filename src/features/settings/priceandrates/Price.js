@@ -28,7 +28,8 @@ const Price = () => {
 
             <NavLink to="/app/Price/electricitytariff">
               <button className="w-96   ml-40 mb-5 mr-3 bg-transparent hover:bg-blue-500 text-blue-700  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent  float-right rounded-md cursor-pointer ... ">
-                + Add new electricity traffic
+                + Add new electricity tariff
+
               </button>
             </NavLink>
           </div>
@@ -71,16 +72,18 @@ const Price = () => {
         </div>
       </div>
 
-      {/* This id for Gas*/}
+   
 
       <div className="pb-10">
         <div className=" overflow-x-auto shadow-md sm:rounded-lg ">
           <div className="flex justify-between">
             <h2 className="text-2xl font-medium ml-5 mt-5 mb-5">Gas</h2>
 
-            <button className=" ml-40 mb-5 mr-3 btn btn-sucess  bg-transparent hover:bg-blue-500 text-blue-700  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent  float-right rounded-md cursor-pointer ...  w-96">
-              + Add new gas traffic
-            </button>
+            <NavLink to="/app/Price/gastariff">
+              <button className="w-96   ml-40 mb-5 mr-3 bg-transparent hover:bg-blue-500 text-blue-700  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent  float-right rounded-md cursor-pointer ... ">
+                + Add new gas tariff
+              </button>
+            </NavLink>
           </div>
 
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -131,9 +134,11 @@ const Price = () => {
           <div className="flex justify-between">
             <h2 className="text-2xl font-medium  ml-5 mt-5 mb-5">Water</h2>
 
-            <button className=" ml-40 mb-5 mr-3 btn btn-sucess  bg-transparent hover:bg-blue-500 text-blue-700  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent  float-right rounded-md cursor-pointer ... w-96 ">
-              + Add new water traffic
-            </button>
+            <NavLink to="/app/Price/watertariff">
+              <button className="w-96   ml-40 mb-5 mr-3 bg-transparent hover:bg-blue-500 text-blue-700  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent  float-right rounded-md cursor-pointer ... ">
+                + Add new water tariff
+              </button>
+            </NavLink>
           </div>
 
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -177,7 +182,7 @@ const Price = () => {
         </div>
       </div>
 
-      {/* This id for Compressed Air*/}
+  
 
       <div className="pb-10">
         <div className=" overflow-x-auto shadow-md sm:rounded-lg ">
@@ -186,9 +191,11 @@ const Price = () => {
               Compressed Air
             </h2>
 
-            <button className=" ml-40 mb-5 mr-3 btn btn-sucess  bg-transparent hover:bg-blue-500 text-blue-700  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent  float-right rounded-md cursor-pointer ...  w-96">
-              + Add new compressed air traffic
-            </button>
+            <NavLink to="/app/Price/compressedairtariff">
+              <button className="w-96   ml-40 mb-5 mr-3 bg-transparent hover:bg-blue-500 text-blue-700  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent  float-right rounded-md cursor-pointer ... ">
+                + Add new compressed air tariff
+              </button>
+            </NavLink>
           </div>
 
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
