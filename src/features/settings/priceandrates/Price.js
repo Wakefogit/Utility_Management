@@ -41,13 +41,29 @@ const Price = () => {
     standingChargeElectricityTariff,
     basicPriceElectricityTariff,
     currencyElectricityTariff,
+    validforGasTariff,
+    standingChargeGasTariff,
+    basicPriceGasTariff,
+    currencyGasTariff,
+    validforWaterTariff,
+    standingChargeWaterTariff,
+    coldWaterPriceTariff,
+    currencyWaterTariff,
+    validforCompressedAirTariff,
+    standingChargeCompressedAirTariff,
+    basicPriceCompressedAirTariff,
+    currencyCompressedAirTariff,
   } = useSelector((state) => state.tariff);
   function formatDate(inputDate) {
     const date = new Date(inputDate);
     const day = date.getDate();
     const monthNames = [
-      "Jan", "Feb","Mar",
-      "Apr","May", "Jun",
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
       "Jul",
       "Aug",
       "Sep",
@@ -63,8 +79,10 @@ const Price = () => {
 
     return `${day} ${monthNames[monthIndex]} ${year}`;
   }
-  const formattedDate = formatDate(validforElectricityTariff);
-
+  const formattedElectricity = formatDate(validforElectricityTariff);
+  const formatedGas = formatDate(validforGasTariff);
+  const formatedWater = formatDate(validforWaterTariff);
+  const formatedCompressedAir = formatDate(validforCompressedAirTariff);
   useEffect(() => {
     dispatch(setPageTitle({ title: "Prices & Rates" }));
   }, []);
@@ -116,10 +134,10 @@ const Price = () => {
               <TableBody>
                 <TableRow>
                   <TableCell>
-                    <VisibilityOutlinedIcon/>
+                    <VisibilityOutlinedIcon />
                     <Button variant="text"></Button>
                   </TableCell>
-                  <TableCell>{formattedDate} — until now</TableCell>
+                  <TableCell>{formattedElectricity} — until now</TableCell>
                   <TableCell>
                     {standingChargeElectricityTariff}
                     {currencyElectricityTariff}/month
@@ -143,37 +161,35 @@ const Price = () => {
               </button>
             </NavLink>
           </div>
-          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-              <tr>
-                <th scope="col" className="px-6 py-3">
-                  Detail
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Valid for
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Standing charge
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Price
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
-                </th>
-                <td className="px-6 py-4">1 Jan 2000 — until now</td>
-                <td className="px-6 py-4">3.60 €/month</td>
-                <td className="px-6 py-4">Level 1: 200.00</td>
-              </tr>
-            </tbody>
-          </table>
+          <TableContainer component={Paper}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Detail</TableCell>
+                  <TableCell>Valid for</TableCell>
+                  <TableCell>Standing charge</TableCell>
+                  <TableCell>Price</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell>
+                    <VisibilityOutlinedIcon />
+                    <Button variant="text"></Button>
+                  </TableCell>
+                  <TableCell>{formatedGas} — until now</TableCell>
+                  <TableCell>
+                    {standingChargeGasTariff}
+                    {currencyGasTariff}/month
+                  </TableCell>
+                  <TableCell>
+                    {basicPriceGasTariff}
+                    {currencyGasTariff}/kWh
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
         </div>
       </div>
 
@@ -188,37 +204,32 @@ const Price = () => {
               </button>
             </NavLink>
           </div>
-          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-              <tr>
-                <th scope="col" className="px-6 py-3">
-                  Detail
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Valid for
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Standing charge
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Price
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
-                </th>
-                <td className="px-6 py-4">1 Jan 2000 — until now</td>
-                <td className="px-6 py-4">3.60 €/month</td>
-                <td className="px-6 py-4">Level 1: 200.00</td>
-              </tr>
-            </tbody>
-          </table>
+          <TableContainer component={Paper}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Detail</TableCell>
+                  <TableCell>Valid for</TableCell>
+                  <TableCell>Standing charge</TableCell>
+                  <TableCell>Price</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell>
+                    <VisibilityOutlinedIcon />
+                    <Button variant="text"></Button>
+                  </TableCell>
+                  <TableCell>{formatedWater} — until now</TableCell>
+                  <TableCell>
+                    {standingChargeWaterTariff}
+                    {currencyWaterTariff}/month
+                  </TableCell>
+                  <TableCell>Cold water:{coldWaterPriceTariff}</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
         </div>
       </div>
 
@@ -235,37 +246,32 @@ const Price = () => {
               </button>
             </NavLink>
           </div>
-          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-              <tr>
-                <th scope="col" className="px-6 py-3">
-                  Detail
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Valid for
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Standing charge
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Price
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
-                </th>
-                <td className="px-6 py-4">1 Jan 2000 — until now</td>
-                <td className="px-6 py-4">3.60 €/month</td>
-                <td className="px-6 py-4">Level 1: 200.00</td>
-              </tr>
-            </tbody>
-          </table>
+          <TableContainer component={Paper}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Detail</TableCell>
+                  <TableCell>Valid for</TableCell>
+                  <TableCell>Standing charge</TableCell>
+                  <TableCell>Price</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell>
+                    <VisibilityOutlinedIcon />
+                    <Button variant="text"></Button>
+                  </TableCell>
+                  <TableCell>{formatedCompressedAir} — until now</TableCell>
+                  <TableCell>
+                    {standingChargeCompressedAirTariff}
+                    {currencyCompressedAirTariff}/month
+                  </TableCell>
+                  <TableCell>{basicPriceCompressedAirTariff}/ kWh</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
         </div>
       </div>
     </div>

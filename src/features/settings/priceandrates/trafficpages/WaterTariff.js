@@ -15,7 +15,7 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import { useNavigate } from 'react-router-dom';
-
+import { setWaterTariff } from "../../../common/TariffSlice";
 const style = {
   position: "absolute",
   top: "50%",
@@ -76,7 +76,14 @@ const navigate = useNavigate()
           },
         }
       );
-
+      dispatch(
+        setWaterTariff({
+          fromDate: response.data.data.fromDate,
+          standingCharge: response.data.data.charge,
+          basicPrice:response.data.data.coldWaterPrice,
+          currency:response.data.data.currency
+        })
+      );
       if (formik.isValid) {
         // Redirect to /app/Price
         navigate("/app/Price");
