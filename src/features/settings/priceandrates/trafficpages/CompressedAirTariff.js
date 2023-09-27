@@ -9,6 +9,7 @@ import Modal from "@mui/material/Modal";
 import HelpOutlinedIcon from "@mui/icons-material/HelpOutlined";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
@@ -31,13 +32,14 @@ const validationSchema = Yup.object().shape({
   validFrom: Yup.date().required("Valid from is required"),
   currency: Yup.string().required("Currency is required"),
   standingCharge: Yup.number().required("Standing charge is required"),
-  basicTariffRate: Yup.number().required("Basic tariff rate is required"),
+  basicTariffRate: Yup.number().required("Price for compressed air is required"),
 });
+
 
 const initialValues = {
   validFrom: "",
   validTo: "",
-  currency: "",
+  currency: "₹",
   standingCharge: "",
   basicTariffRate: "",
   lowTariffRate: "",
@@ -56,9 +58,26 @@ const CompressedAirTariff = () => {
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       // Handle form submission and send data to the backend here
       console.log(values);
+      const apiUrl = "http://192.168.0.104:8080/createcompressedair";
+      const response = await axios.post(
+        apiUrl,
+        {
+          fromDate: values.validFrom,
+          toDate: values.validTo === "" ? null : values.validTo,
+          currency: values.currency,
+          charge: values.standingCharge,
+          price: values.basicTariffRate,      
+          note: values.note === "" ? null : values.note,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (formik.isValid) {
         // Redirect to /app/Price
@@ -314,7 +333,7 @@ const CompressedAirTariff = () => {
         className="mt-60  float-right hover:bg-blue-500"
         disabled={!formik.isValid}
       >
-        Save Gas Traffic
+        Save Compressed Air Tariff
       </Button>
     </div>
   

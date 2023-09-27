@@ -15,6 +15,7 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import { setElectricityTariff } from "../../../common/TariffSlice";
 
 const style = {
   position: "absolute",
@@ -37,7 +38,7 @@ const validationSchema = Yup.object().shape({
 const initialValues = {
   validFrom: "",
   validTo: "",
-  currency: "",
+  currency: "₹",
   standingCharge: "",
   basicTariffRate: "",
   lowTariffRate: "",
@@ -58,7 +59,7 @@ const ElectricityTraffic = () => {
     onSubmit: async (values) => {
       // Handle form submission and send data to the backend here
  
-      const apiUrl = "http://localhost:8080/createelectricity";
+      const apiUrl = "http://192.168.0.104:8080/createelectricity";
       const response  = await axios.post(
         apiUrl,
         {
@@ -77,6 +78,14 @@ const ElectricityTraffic = () => {
         }
       );
       console.log(response);
+      dispatch(
+        setElectricityTariff({
+          fromDate: response.data.data.fromDate,
+          standingCharge: response.data.data.charge,
+          basicPrice:response.data.data.basicPrice,
+          currency:response.data.data.currency
+        })
+      );
       if (formik.isValid) {
         // Redirect to /app/Price
         navigate("/app/Price");
@@ -198,10 +207,12 @@ const ElectricityTraffic = () => {
           onBlur={formik.handleBlur}
           error={formik.touched.currency && Boolean(formik.errors.currency)}
         >
-          <MenuItem defaultValue="">Choose a Currency</MenuItem>
+          {/* <MenuItem defaultValue="">Choose a Currency</MenuItem> */}
           <MenuItem value="₹">Indian Rupees (₹)</MenuItem>
-          <MenuItem value="$">United States Dollar ($)</MenuItem>
+          <MenuItem value="$"> Dollar ($)</MenuItem>
           <MenuItem value="€">Euro (€)</MenuItem>
+          <MenuItem value="FC">Congolese franc (FC)</MenuItem>
+          <MenuItem value="FC"> (FC)</MenuItem>
           <MenuItem value="FC">Congolese franc (FC)</MenuItem>
         </Select>
       </div>
@@ -414,7 +425,7 @@ const ElectricityTraffic = () => {
           className="mt-60  float-right hover:bg-blue-500"
           disabled={!formik.isValid}
         >
-          Save Electricity Traffic
+          Save Electricity Tariff
         </Button>
       </div>
     </form>

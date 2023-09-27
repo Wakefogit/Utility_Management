@@ -31,13 +31,13 @@ const validationSchema = Yup.object().shape({
   validFrom: Yup.date().required("Valid from is required"),
   currency: Yup.string().required("Currency is required"),
   standingCharge: Yup.number().required("Standing charge is required"),
-  basicTariffRate: Yup.number().required("Basic tariff rate is required"),
+  basicTariffRate: Yup.number().required("Price for consumed cold water  is required"),
 });
 
 const initialValues = {
   validFrom: "",
   validTo: "",
-  currency: "",
+  currency: "₹",
   standingCharge: "",
   basicTariffRate: "",
   lowTariffRate: "",
@@ -55,9 +55,27 @@ const navigate = useNavigate()
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       // Handle form submission and send data to the backend here
       console.log(values);
+      const apiUrl = "http://192.168.0.104:8080/createwater";
+      const response = await axios.post(
+        apiUrl,
+        {
+          fromDate: values.validFrom,
+          toDate: values.validTo === "" ? null : values.validTo,
+          currency: values.currency,
+          charge: values.standingCharge,
+          coldWaterPrice: values.basicTariffRate,  
+          hotWaterPrice: values.lowTariffRate === "" ? null : values.lowTariffRate,
+          note: values.note === "" ? null : values.note,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (formik.isValid) {
         // Redirect to /app/Price
@@ -391,7 +409,7 @@ const navigate = useNavigate()
           className="mt-60  float-right hover:bg-blue-500"
           disabled={!formik.isValid}
         >
-          Save Electricity Traffic
+          Save Water Tariff
         </Button>
       </div>
     
