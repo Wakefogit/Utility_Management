@@ -6,9 +6,7 @@ import { blue } from "@mui/material/colors";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { setPageTitle } from "../../common/headerSlice";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
+
 import {
   Table,
   TableBody,
@@ -86,7 +84,16 @@ const Price = () => {
   useEffect(() => {
     dispatch(setPageTitle({ title: "Prices & Rates" }));
   }, []);
-
+  const userDataString = localStorage.getItem("user");
+  let roleId 
+  if(userDataString) {
+    const userData = JSON.parse(userDataString)
+     roleId = userData.roleId
+    } else {
+      console.error("ther is an error")
+    }
+    console.log(roleId, "this is role id")
+  console.log(userDataString,"this is user value ")
   // Create separate state variables for each modal
   const [electricityModalOpen, setElectricityModalOpen] = useState(false);
   const [waterModalOpen, setWaterModalOpen] = useState(false);
@@ -115,11 +122,11 @@ const Price = () => {
               Electricity
             </h2>
 
-            <NavLink to="/app/Price/electricitytariff">
+            {roleId === 1 &&  (<NavLink to="/app/Price/electricitytariff">
               <button className="w-96   ml-40 mb-5 mr-3 bg-transparent hover:bg-blue-500 text-blue-700  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent  float-right rounded-md cursor-pointer ... ">
                 + Add new electricity tariff
               </button>
-            </NavLink>
+            </NavLink>)}
           </div>
           <TableContainer component={Paper}>
             <Table>
@@ -155,11 +162,12 @@ const Price = () => {
         <div className=" overflow-x-auto shadow-md sm:rounded-lg ">
           <div className="flex justify-between">
             <h2 className="text-2xl font-medium ml-5 mt-5 mb-5">Gas</h2>
-            <NavLink to="/app/Price/gastariff">
+            
+            {roleId === 1 && (<NavLink to="/app/Price/gastariff">
               <button className="w-96   ml-40 mb-5 mr-3 bg-transparent hover:bg-blue-500 text-blue-700  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent  float-right rounded-md cursor-pointer ... ">
                 + Add new gas tariff
               </button>
-            </NavLink>
+            </NavLink>)}
           </div>
           <TableContainer component={Paper}>
             <Table>
@@ -198,11 +206,11 @@ const Price = () => {
         <div className=" overflow-x-auto shadow-md sm:rounded-lg ">
           <div className="flex justify-between">
             <h2 className="text-2xl font-medium  ml-5 mt-5 mb-5">Water</h2>
-            <NavLink to="/app/Price/watertariff">
+            {roleId === 1 && (<NavLink to="/app/Price/watertariff">
               <button className="w-96   ml-40 mb-5 mr-3 bg-transparent hover:bg-blue-500 text-blue-700  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent  float-right rounded-md cursor-pointer ... ">
                 + Add new water tariff
               </button>
-            </NavLink>
+            </NavLink>)}
           </div>
           <TableContainer component={Paper}>
             <Table>
@@ -240,11 +248,11 @@ const Price = () => {
             <h2 className="text-2xl font-medium ml-5 mt-5 mb-5">
               Compressed Air
             </h2>
-            <NavLink to="/app/Price/compressedairtariff">
+            {roleId === 1 && (<NavLink to="/app/Price/compressedairtariff">
               <button className="w-96   ml-40 mb-5 mr-3 bg-transparent hover:bg-blue-500 text-blue-700  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent  float-right rounded-md cursor-pointer ... ">
                 + Add new compressed air tariff
               </button>
-            </NavLink>
+            </NavLink>)}
           </div>
           <TableContainer component={Paper}>
             <Table>
