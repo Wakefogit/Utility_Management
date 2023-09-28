@@ -1,6 +1,6 @@
 import { themeChange } from "theme-change";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -26,22 +26,22 @@ function Header() {
   const [currentTheme, setCurrentTheme] = useState(
     localStorage.getItem("theme")
   );
-
+  const loggedOutRef = useRef(false);
   useEffect(() => {
-    themeChange(false);
-
-    if (currentTheme === null) {
-      if (
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches
-      ) {
-        setCurrentTheme("dark");
-      } else {
-        setCurrentTheme("light");
+    const handleBeforeUnload = (event) => {
+      if (loggedOutRef.current) {
+        return null;
       }
-    }
+      event.preventDefault();
+      event.returnValue = "";
+    };
 
-    // 👆 false parameter is required for react project
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      // Remove the 'beforeunload' event listener when the component unmounts
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
   }, []);
 
   // Opening right sidebar for notification
@@ -54,10 +54,10 @@ function Header() {
       })
     );
   };
-
   function logoutUser() {
-    localStorage.clear();
-
+    // Set the loggedOut ref to true
+    loggedOutRef.current = true;
+    localStorage.removeItem("authToken");
     window.location.href = "/";
   }
 
