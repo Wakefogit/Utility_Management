@@ -191,6 +191,9 @@ const CompressedAirTariff = () => {
         <MenuItem value="$">United States Dollar ($)</MenuItem>
         <MenuItem value="€">Euro (€)</MenuItem>
         <MenuItem value="FC">Congolese franc (FC)</MenuItem>
+        <MenuItem value="£"> Pound(£)</MenuItem>
+        <MenuItem value="¥">  Yuan (¥)</MenuItem>
+        <MenuItem value="د.إ">  United Arab Emirates Dirham (د.إ)</MenuItem>
       </Select>
     </div>
 
