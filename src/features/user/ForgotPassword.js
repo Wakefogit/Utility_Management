@@ -36,7 +36,7 @@ console.log("Anand")
 
     const otpHandler = () => {
 
-      const apiUrl = "http://192.168.0.104:8080/forgotpassword";  
+      const apiUrl = "http://192.168.10.8:8080/forgotpassword";  
 
       axios
 

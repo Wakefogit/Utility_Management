@@ -59,7 +59,7 @@ const ElectricityTraffic = () => {
     onSubmit: async (values) => {
       // Handle form submission and send data to the backend here
  
-      const apiUrl = "http://192.168.0.104:8080/createelectricity";
+      const apiUrl = "http://192.168.10.8:8080/createelectricity";
       const response  = await axios.post(
         apiUrl,
         {
@@ -116,7 +116,7 @@ const ElectricityTraffic = () => {
   const handleLowTariffClose = () => setLowTariffModalOpen(false);
 
   // const sendDataToBackend = async () => {
-  //   let apiUrl = "http://192.168.0.104:8080/createelectricity";
+  //   let apiUrl = "http://192.168.10.8:8080/createelectricity";
   //   const response = await axios.post(
   //     apiUrl,
   //     {

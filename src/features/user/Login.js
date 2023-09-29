@@ -29,7 +29,7 @@ function Login() {
     // setLoading(true);
     let name = loginData?.name;
     let password = loginData?.password;
-    const apiUrl = "http://192.168.0.104:8080/login";
+    const apiUrl = "http://192.168.10.8:8080/login";
     axios
       .post(
         apiUrl,

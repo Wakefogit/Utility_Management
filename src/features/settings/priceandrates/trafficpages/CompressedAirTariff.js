@@ -61,7 +61,7 @@ const CompressedAirTariff = () => {
     onSubmit: async (values) => {
       // Handle form submission and send data to the backend here
       console.log(values);
-      const apiUrl = "http://192.168.0.104:8080/createcompressedair";
+      const apiUrl = "http://192.168.10.8:8080/createcompressedair";
       const response = await axios.post(
         apiUrl,
         {

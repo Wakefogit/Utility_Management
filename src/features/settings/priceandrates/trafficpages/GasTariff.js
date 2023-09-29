@@ -61,7 +61,7 @@ const GasTafiff = () => {
     onSubmit: async (values) => {
       // Handle form submission and send data to the backend here
       console.log(values);
-      const apiUrl = "http://192.168.0.104:8080/creategas";
+      const apiUrl = "http://192.168.10.8:8080/creategas";
       const response = await axios.post(
         apiUrl,
         {
