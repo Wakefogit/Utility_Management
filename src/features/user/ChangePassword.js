@@ -38,7 +38,7 @@ const ChangePassword = () => {
 
     }
 
-    const apiUrl = "http://192.168.0.104:8080/resetpassword";
+    const apiUrl = "http://192.168.10.8:8080/resetpassword";
 
  
 

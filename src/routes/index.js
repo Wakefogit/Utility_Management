@@ -22,7 +22,9 @@ const DocFeatures = lazy(() => import('../pages/DocFeatures'))
 const DocComponents = lazy(() => import('../pages/DocComponents'))
 const Analytics = lazy(() => import('../pages/protected/Analytics'))
 const ElectricityTraffic = lazy(() => import('../features/settings/priceandrates/trafficpages/ElectricityTraffic'))
-
+const GasTariff = lazy(() => import('../features/settings/priceandrates/trafficpages/GasTariff'))
+const WaterTariff = lazy(() => import('../features/settings/priceandrates/trafficpages/WaterTariff'))
+const CompressedAirTariff = lazy(() => import('../features/settings/priceandrates/trafficpages/CompressedAirTariff'))
 
 const routes = [
   {
@@ -89,6 +91,18 @@ const routes = [
   {
     path: '/Price/electricitytariff',
     component: ElectricityTraffic,
+  },
+  {
+    path: '/Price/gastariff',
+    component: GasTariff,
+  },
+  {
+    path: '/Price/watertariff',
+    component: WaterTariff,
+  },
+  {
+    path: 'Price/compressedairtariff',
+    component: CompressedAirTariff,
   },
   {
     path: '/Reports',

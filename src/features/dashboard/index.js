@@ -144,10 +144,10 @@ function Dashboard() {
         console.log(startDate, endDate, "this is outside value");
 
         const zone1response = await axios.get(
-          `http://192.168.0.104:8080/energy/zone1?startDate=${startDate}&endDate=${endDate}`
+          `http://192.168.10.8:8080/energy/zone1?startDate=${startDate}&endDate=${endDate}`
         );
         const zone2response = await axios.get(
-          `http://192.168.0.104:8080/energy/zone2?startDate=${startDate}&endDate=${endDate}`
+          `http://192.168.10.8:8080/energy/zone2?startDate=${startDate}&endDate=${endDate}`
         );
 
         console.log(zone1response.data, "Zone1data");

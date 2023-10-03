@@ -60,7 +60,14 @@ function App() {
           <Route path="/Analytics&Reports-Gas" element={<Gas />} />
 
           {/* Place new routes over this */}
-          <Route path="/app/*" element={<Layout />} />
+          <Route
+            path="/app/*"
+            element={
+              <PrivateNavigates>
+                <Layout />
+              </PrivateNavigates>
+            }
+          />
 
           <Route path="*" element={<Navigate to={"/login"} replace />} />
         </Routes>

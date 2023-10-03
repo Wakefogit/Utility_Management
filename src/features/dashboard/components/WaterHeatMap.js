@@ -77,7 +77,7 @@ function ApexChart() {
         // Make an API call to fetch data for the previous week
         // Modify this URL to match your API endpoint
         const response = await axios.get(
-          `http://192.168.0.104:8080/energy/zone1heatmap?startDate=${startDate}&endDate=${endDate}`
+          `http://192.168.10.8:8080/energy/zone1heatmap?startDate=${startDate}&endDate=${endDate}`
         );
 
         console.log(response.data);
