@@ -68,7 +68,7 @@ const routes = [
       },
 
       {
-        path: "/app/Analytics&Reports-Gas", //url
+        path: "/Analytics&Reports-Gas", //url
 
         icon: (
           <svg

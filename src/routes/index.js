@@ -3,6 +3,7 @@
 import { lazy } from 'react'
 import Reports from '../pages/protected/Reports/Reports'
 import Power from '../pages/Power'
+import gas from '../pages/gas'
 
 const Dashboard = lazy(() => import('../pages/protected/Dashboard'))
 const Welcome = lazy(() => import('../pages/protected/Welcome'))
@@ -105,6 +106,10 @@ const routes = [
   //   path:'/Power1',
   //   component:Power1,
   // }
+  {
+    path:'/Gas',
+    component: gas,
+  },
 ]
 
 export default routes
